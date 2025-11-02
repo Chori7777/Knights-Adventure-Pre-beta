@@ -15,6 +15,7 @@ TagManager:
   - HealthPotion
   - Comsumable
   - Boss
+  - HUD
   layers:
   - Default
   - TransparentFX
@@ -78,6 +79,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1262583705
+    locked: 0
+  - name: front
+    uniqueID: 1163054303
     locked: 0
   m_RenderingLayers:
   - Default

@@ -39,22 +39,69 @@ public class playerLife : MonoBehaviour
     [SerializeField] private string deathAnimationName = "Death";
     [SerializeField] private float deathFallbackDuration = 1f;
 
+    // Nuevo: indicador de que el player terminó su inicialización lógica
+    private bool isInitialized = false;
+    public bool IsInitialized => isInitialized;
+
     private void Awake()
     {
+        // Obtener componentes locales (esto no toca la UI)
         controller = GetComponent<PlayerMovement>();
-        healthUI = GetComponent<PlayerHealthUI>();
         animController = GetComponent<PlayerAnimationController>();
         fallbackAnimator = GetComponent<Animator>();
-
-        if (healthUI == null)
-            healthUI = gameObject.AddComponent<PlayerHealthUI>();
 
         if (animController != null && controller != null)
             animController.Initialize(controller);
 
-        healthUI.Initialize(this);
-
+        // Clamp de salud temprano
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+    }
+
+    private IEnumerator Start()
+    {
+        // Intentar vincular con el HUD durante unos frames (esperar a que la UI exista)
+        float timeout = 1.0f; // 1 segundo de paciencia
+        float t = 0f;
+        while (PlayerHealthUI.Instance == null && t < timeout)
+        {
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        if (PlayerHealthUI.Instance != null)
+        {
+            healthUI = PlayerHealthUI.Instance;
+            // Initialize es seguro (ver PlayerHealthUI modificado)
+            healthUI.Initialize(this);
+        }
+        else
+        {
+            Debug.LogWarning("[playerLife] No se encontró PlayerHealthUI en Start() (continuando sin HUD).");
+        }
+
+        // Registrar para volver a vincular cuando se cargue escena (en caso de que HUD esté por escena)
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+        // Marca que ya terminó la inicialización lógica
+        isInitialized = true;
+
+        // Actualizar UI final
+        UpdateUI();
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Re-vincular HUD si aparece en la nueva escena
+        if (PlayerHealthUI.Instance != null)
+        {
+            healthUI = PlayerHealthUI.Instance;
+            healthUI.Initialize(this);
+        }
         UpdateUI();
     }
 
@@ -92,7 +139,6 @@ public class playerLife : MonoBehaviour
         currentPotions = Mathf.Min(currentPotions + amount, maxPotions);
         UpdateUI();
     }
-
     public void TakeDamage(Vector2 attackerPosition, int damage)
     {
         if (!CanTakeDamage()) return;
@@ -103,7 +149,13 @@ public class playerLife : MonoBehaviour
         UpdateUI();
 
         if (controller != null)
+        {
             controller.TakeDamage(attackerPosition);
+        }
+        else
+        {
+            Debug.LogError("[playerLife] Error al llamar controller.TakeDamage(): PlayerMovement no encontrado o no inicializado");
+        }
 
         if (animController != null)
             animController.TriggerDamage();
@@ -235,6 +287,7 @@ public class playerLife : MonoBehaviour
             healthUI.UpdateDisplay();
     }
 
+    // Métodos de setters
     public void SetHealth(int health)
     {
         currentHealth = Mathf.Clamp(health, 0, maxHealth);

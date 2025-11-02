@@ -508,8 +508,18 @@ public class PlayerMovement : MonoBehaviour
     //Cuando se recibe el daño se saca de donde y se le aplica una fuerza en contra para ser empujado
     public void TakeDamage(Vector2 attackerPosition)
     {
+        // Asegurar que los componentes estén inicializados
+        if (rb == null || animController == null)
+        {
+            InitializeComponents();
+        }
+
         isTakingDamage = true;
-        animController.TriggerDamage();
+
+        if (animController != null)
+        {
+            animController.TriggerDamage();
+        }
 
         Vector2 knockbackDirection = ((Vector2)transform.position - attackerPosition).normalized;
         float minKnockbackY = 0.5f;
@@ -518,10 +528,14 @@ public class PlayerMovement : MonoBehaviour
 
         rb.linearVelocity = Vector2.zero;
         rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
-
+        //hola
         StartCoroutine(DamageRecoveryCoroutine());
-        float randomPitch = Random.Range(0.9f, 1.1f);
-        AudioManager.Instance.PlaySFX(hurtSound, 1f, randomPitch);
+
+        if (hurtSound != null)
+        {
+            float randomPitch = Random.Range(0.9f, 1.1f);
+            AudioManager.Instance.PlaySFX(hurtSound, 1f, randomPitch);
+        }
     }
 
     private IEnumerator DamageRecoveryCoroutine()

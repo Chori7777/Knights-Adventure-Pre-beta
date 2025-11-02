@@ -44,32 +44,61 @@ public class PlayerHealthUI : MonoBehaviour
     public float headOffsetY = 0f;
 
     private int HEAD_OFFSET = 2;
-    //Basicamente en todos los valores de arriba
-//Se le da al codigo las imagenes de la espada llena y la espada vacia, junto a la cabeza del caballero, para poder ir
-//Cambiandolo cuando es necesario
+
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
+            // opcional: mantener el HUD entre escenas si querés
+            // DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
+            return;
         }
     }
-    //agarra playerlife
+
+    // Inicializa la UI desde playerLife. Ahora es segura: chequea nulls y no asume ControladorDatosJuego.
     public void Initialize(playerLife p)
     {
+        if (p == null)
+        {
+            Debug.LogWarning("[PlayerHealthUI] Initialize recibió player null.");
+            return;
+        }
+
         player = p;
-        UpdateDisplay();
-        ActualizarMonedas(ControladorDatosJuego.Instance.ObtenerMonedas());
+
+        // Intentar actualizar, pero proteger contra nulls internos
+        try
+        {
+            UpdateDisplay();
+
+            // ControladorDatosJuego puede ser null en ciertos escenarios (por ej. en tests o bootstrap)
+            var controlador = ControladorDatosJuego.Instance;
+            if (controlador != null)
+            {
+                ActualizarMonedas(controlador.ObtenerMonedas());
+            }
+            else
+            {
+                // Si no existe, dejamos el texto en "0" o lo que esté asignado
+                if (coinText != null) coinText.text = "0";
+            }
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"[PlayerHealthUI] Excepción en Initialize(): {ex.Message}\n{ex.StackTrace}");
+        }
     }
-    //Se encarga de actualizar el HUD
+
     public void UpdateDisplay()
     {
         if (player == null)
         {
+            // no hay player asignado, nada que hacer
             return;
         }
 
@@ -82,7 +111,7 @@ public class PlayerHealthUI : MonoBehaviour
 
     void UpdatePotionText()
     {
-        if (potionText != null)
+        if (potionText != null && player != null)
         {
             potionText.text = player.Potions + "/" + player.MaxPotions;
         }
@@ -98,47 +127,37 @@ public class PlayerHealthUI : MonoBehaviour
 
     void UpdateKnightSprite()
     {
+        if (player == null) return;
         if (knightImage == null || knightHeadImage == null) return;
 
         Sprite currentSprite = knight1HealthSprite;
 
-        if (player.Health == 5)
-        {
-            currentSprite = knight5HealthSprite;
-        }
-        else if (player.Health == 4)
-        {
-            currentSprite = knight4HealthSprite;
-        }
-        else if (player.Health == 3)
-        {
-            currentSprite = knight3HealthSprite;
-        }
-        else if (player.Health == 2)
-        {
-            currentSprite = knight2HealthSprite;
-        }
-        else
-        {
-            currentSprite = knight1HealthSprite;
-        }
+        int h = Mathf.Clamp(player.Health, 0, player.MaxHealth);
 
-        knightImage.sprite = currentSprite;
-        knightHeadImage.sprite = currentSprite;
+        // Elegir sprite en base a salud (seguro si alguno es null no rompe)
+        if (h >= 5 && knight5HealthSprite != null) currentSprite = knight5HealthSprite;
+        else if (h == 4 && knight4HealthSprite != null) currentSprite = knight4HealthSprite;
+        else if (h == 3 && knight3HealthSprite != null) currentSprite = knight3HealthSprite;
+        else if (h == 2 && knight2HealthSprite != null) currentSprite = knight2HealthSprite;
+        else if (knight1HealthSprite != null) currentSprite = knight1HealthSprite;
+
+        if (currentSprite != null)
+        {
+            knightImage.sprite = currentSprite;
+            knightHeadImage.sprite = currentSprite;
+        }
     }
 
     void UpdateSword()
     {
+        if (player == null) return;
+
         if (swordTip != null)
         {
-            if (player.Health >= player.MaxHealth)
-            {
+            if (player.Health >= player.MaxHealth && tipFullSprite != null)
                 swordTip.sprite = tipFullSprite;
-            }
-            else
-            {
+            else if (tipEmptySprite != null)
                 swordTip.sprite = tipEmptySprite;
-            }
         }
 
         if (swordMiddleParts != null)
@@ -149,55 +168,67 @@ public class PlayerHealthUI : MonoBehaviour
                 {
                     int healthThreshold = player.MaxHealth - HEAD_OFFSET - i;
 
-                    if (player.Health > healthThreshold)
-                    {
+                    if (player.Health > healthThreshold && middleFullSprite != null)
                         swordMiddleParts[i].sprite = middleFullSprite;
-                    }
-                    else
-                    {
+                    else if (middleEmptySprite != null)
                         swordMiddleParts[i].sprite = middleEmptySprite;
-                    }
                 }
             }
         }
 
         if (swordHandle != null)
         {
-            if (player.Health > 0)
-            {
+            if (player.Health > 0 && handleFullSprite != null)
                 swordHandle.sprite = handleFullSprite;
-            }
-            else
-            {
+            else if (handleEmptySprite != null)
                 swordHandle.sprite = handleEmptySprite;
-            }
         }
     }
 
     void UpdateHeadPosition()
     {
+        if (player == null) return;
         if (knightHeadImage == null) return;
 
         RectTransform headRect = knightHeadImage.GetComponent<RectTransform>();
         if (headRect == null) return;
+
+        if (swordMiddleParts == null || swordMiddleParts.Length == 0)
+        {
+            // posicion por defecto en la punta si no hay segmentos
+            if (swordTip != null)
+            {
+                RectTransform tipRect = swordTip.GetComponent<RectTransform>();
+                if (tipRect != null)
+                {
+                    Vector3 offset = new Vector3(headOffsetX, headOffsetY, 0);
+                    headRect.position = tipRect.position + offset;
+                }
+            }
+            return;
+        }
 
         int segmentIndex = (player.MaxHealth - player.Health) - HEAD_OFFSET;
 
         if (segmentIndex >= 0 && segmentIndex < swordMiddleParts.Length && swordMiddleParts[segmentIndex] != null)
         {
             RectTransform segmentRect = swordMiddleParts[segmentIndex].GetComponent<RectTransform>();
-            headRect.position = segmentRect.position;
+            if (segmentRect != null) headRect.position = segmentRect.position;
         }
         else if (player.Health > 0 && swordTip != null)
         {
             RectTransform tipRect = swordTip.GetComponent<RectTransform>();
-            Vector3 offset = new Vector3(headOffsetX, headOffsetY, 0);
-            headRect.position = tipRect.position + offset;
+            if (tipRect != null)
+            {
+                Vector3 offset = new Vector3(headOffsetX, headOffsetY, 0);
+                headRect.position = tipRect.position + offset;
+            }
         }
     }
 
     void UpdateKnightPosition()
     {
+        if (player == null) return;
         if (knightImage == null) return;
 
         RectTransform knightRect = knightImage.GetComponent<RectTransform>();
@@ -211,5 +242,3 @@ public class PlayerHealthUI : MonoBehaviour
         knightRect.anchoredPosition = newPos;
     }
 }
-//basicamente todos estos scripts lo que hacen es recibir los cambios de la vida del jugador, monedas
-//Y pociones e implementarlos en el HUD,ademas del cambio de sprites
