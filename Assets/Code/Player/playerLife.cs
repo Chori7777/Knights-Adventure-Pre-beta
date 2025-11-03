@@ -233,11 +233,13 @@ public class playerLife : MonoBehaviour
     {
         if (!isDead) isDead = true;
         OnDeathComplete();
+        AudioManager.Instance.StopMusicImmediately();
     }
 
     private void OnDeathComplete()
     {
         SceneManager.LoadScene("GameOver");
+        AudioManager.Instance.StopMusicImmediately();
     }
 
     private void DisableAllControls()
