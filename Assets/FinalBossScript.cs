@@ -47,13 +47,17 @@ public class FinalBossController : MonoBehaviour
     [Header("Attack Timing")]
     [SerializeField] private float timeBetweenAttacks = 3f;
 
+    [SerializeField] private BossLife bossLife; // Referencia al script de vida del boss
+
     private bool isAttacking = false;
 
     private void Start()
     {
+        if (bossLife == null)
+            Debug.LogWarning("BossLife no asignado en FinalBossController.");
+
         StartCoroutine(AttackCycle());
     }
-    [SerializeField] private BossLife bossLife; // Referencia al script de vida del boss
 
     private IEnumerator AttackCycle()
     {
@@ -66,7 +70,7 @@ public class FinalBossController : MonoBehaviour
             {
                 TeleportToRandomPosition();
 
-                if (bossLife.health > bossLife.maxHealth / 2)
+                if (bossLife != null && bossLife.health > bossLife.maxHealth / 2)
                 {
                     // Vida normal: repetir ataques 3 veces excepto magos
                     int attackNumber = Random.Range(1, 6);
@@ -80,7 +84,7 @@ public class FinalBossController : MonoBehaviour
                             yield return new WaitForSeconds(Random.Range(0.3f, 0.7f));
                     }
                 }
-                else
+                else if (bossLife != null)
                 {
                     // Modo furia: combinaciones de ataques, sin invocar magos
                     int firstAttack = Random.Range(1, 6);
@@ -99,33 +103,46 @@ public class FinalBossController : MonoBehaviour
         }
     }
 
-
-
     private void TeleportToRandomPosition()
     {
-        int newIndex = Random.Range(0, teleportPositions.Length);
-        transform.position = teleportPositions[newIndex].position;
+        if (teleportPositions.Length == 0) return;
 
-        // Animación de teleport
+        int newIndex = Random.Range(0, teleportPositions.Length);
+        Vector3 targetPos = teleportPositions[newIndex].position;
+
+        // Trigger de desaparecer
         if (animator != null)
-            animator.SetTrigger("Teleport");
+            animator.SetTrigger("Disappear");
+
+        // Esperamos un pequeño delay según velocidad de teleport
+        float teleportDelay = (bossLife != null && bossLife.health <= bossLife.maxHealth / 2) ? 0.2f : 0.5f;
+        StartCoroutine(TeleportCoroutine(targetPos, teleportDelay));
+
+        Debug.Log($"Final Boss → Teleport a posición {newIndex + 1}");
+    }
+
+    private IEnumerator TeleportCoroutine(Vector3 targetPos, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        transform.position = targetPos;
+
+        // Trigger de aparecer
+        if (animator != null)
+            animator.SetTrigger("Appear");
 
         // Sonido de teleport
         if (teleportSFX != null)
             AudioManager.Instance.PlaySFX(teleportSFX);
-
-        Debug.Log($"Final Boss → Teleport a posición {newIndex + 1}");
     }
 
     private IEnumerator ExecuteAttack(int attackNumber)
     {
         isAttacking = true;
 
-        // Animación según ataque
         if (animator != null)
             animator.SetTrigger("Attack" + attackNumber);
 
-        // Ejecutar ataque
         switch (attackNumber)
         {
             case 1: yield return StartCoroutine(Attack1_DirectSpheres()); break;
@@ -138,7 +155,7 @@ public class FinalBossController : MonoBehaviour
         isAttacking = false;
     }
 
-    // ===== ATAQUE 1 =====
+    // ===== ATAQUES =====
     private IEnumerator Attack1_DirectSpheres()
     {
         for (int i = 0; i < 3; i++)
@@ -149,7 +166,6 @@ public class FinalBossController : MonoBehaviour
             if (rb != null)
                 rb.linearVelocity = direction * sphereSpeed;
 
-            // Sonido por cada esfera
             if (sphereAttackSFX != null)
                 AudioManager.Instance.PlaySFX(sphereAttackSFX);
 
@@ -157,7 +173,6 @@ public class FinalBossController : MonoBehaviour
         }
     }
 
-    // ===== ATAQUE 2 =====
     private IEnumerator Attack2_MeteorRain()
     {
         for (int i = 0; i < 8; i++)
@@ -176,7 +191,6 @@ public class FinalBossController : MonoBehaviour
 
             meteor.AddComponent<MeteorExplosion>().explosionPrefab = explosionEffect;
 
-            // Sonido por cada meteorito
             if (meteorAttackSFX != null)
                 AudioManager.Instance.PlaySFX(meteorAttackSFX);
 
@@ -184,7 +198,6 @@ public class FinalBossController : MonoBehaviour
         }
     }
 
-    // ===== ATAQUE 3 =====
     private IEnumerator Attack3_SummonMages()
     {
         Instantiate(magePrefab, leftMageSpawn.position, Quaternion.identity);
@@ -200,7 +213,6 @@ public class FinalBossController : MonoBehaviour
         yield return new WaitForSeconds(2f);
     }
 
-    // ===== ATAQUE 4 =====
     private IEnumerator Attack4_FollowingSphere()
     {
         Vector3 spawnPos = new Vector3(player.position.x, player.position.y + 3f, 0);
@@ -210,9 +222,15 @@ public class FinalBossController : MonoBehaviour
             AudioManager.Instance.PlaySFX(followingSphereSFX);
 
         float elapsedTime = 0f;
+        float ySpeed = 2f;
+
         while (elapsedTime < followDuration && sphere != null)
         {
-            sphere.transform.position = new Vector3(player.position.x, sphere.transform.position.y, 0);
+            Vector3 spherePos = sphere.transform.position;
+            spherePos.x = player.position.x;
+            spherePos.y = Mathf.Lerp(spherePos.y, player.position.y + 3f, Time.deltaTime * ySpeed);
+            sphere.transform.position = spherePos;
+
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -222,11 +240,10 @@ public class FinalBossController : MonoBehaviour
             Rigidbody2D rb = sphere.GetComponent<Rigidbody2D>();
             if (rb == null) rb = sphere.AddComponent<Rigidbody2D>();
             rb.gravityScale = 0;
-            rb. linearVelocity = Vector2.down * 10f;
+            rb.linearVelocity = Vector2.down * 10f;
         }
     }
 
-    // ===== ATAQUE 5 =====
     private IEnumerator Attack5_InvertedPyramid()
     {
         int rows = 5;
@@ -252,7 +269,6 @@ public class FinalBossController : MonoBehaviour
                 rightRb.linearVelocity = rightDir * pyramidSphereSpeed;
             }
 
-            // Sonido por cada esfera de pirámide
             if (pyramidAttackSFX != null)
                 AudioManager.Instance.PlaySFX(pyramidAttackSFX);
 
