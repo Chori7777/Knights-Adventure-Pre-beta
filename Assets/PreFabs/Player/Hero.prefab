@@ -119,7 +119,7 @@ SpriteRenderer:
   m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 2743055858919256353, guid: 4691816a068c7e44c9317d20077349a2, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6392157}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -163,8 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a050c4f09bacc4bb1d205501a3d82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSound: {fileID: 0}
-  hurtSound: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: 0aa5c063780bd9f408b57177b38fa627, type: 3}
+  hurtSound: {fileID: 8300000, guid: 63a9c89bd995f3d41a29e414a0d95aa9, type: 3}
   groundCheck: {fileID: 8912768487357915013}
   wallCheck: {fileID: 3176949573638936446}
   projectileSpawnPoint: {fileID: 5589603784711402807}
