@@ -238,23 +238,8 @@ public class playerLife : MonoBehaviour
 
     private void OnDeathComplete()
     {
-        Debug.Log("=== JUGADOR MUERTO ===");
-
-        // Detener música abruptamente
-        if (AudioManager.Instance != null)
-        {
-            AudioManager.Instance.StopMusicImmediately();
-        }
-
-        // IMPORTANTE: Guardar datos antes de cambiar de escena
-        if (ControladorDatosJuego.Instance != null)
-        {
-            ControladorDatosJuego.Instance.GuardarDatos();
-            Debug.Log("Datos guardados antes de morir");
-        }
-
-        // Cargar escena de Game Over
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver"); // Ajusta el nombre
+        SceneManager.LoadScene("GameOver");
+        AudioManager.Instance.StopMusicImmediately();
     }
 
     private void DisableAllControls()
