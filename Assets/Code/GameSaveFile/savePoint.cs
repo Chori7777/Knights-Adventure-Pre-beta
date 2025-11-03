@@ -11,22 +11,32 @@ public class savePoint : MonoBehaviour
     {
         if (collision.CompareTag("Player") && autoGuardar)
         {
+            Debug.Log("=== ACTIVANDO CHECKPOINT ===");
+
             Vector3 posicionJugador = transform.position;
-            Vector3 posicionCamara = Camera.main.transform.position;
 
+            // Guardar checkpoint
             ControladorDatosJuego.Instance.GuardarCheckpoint(posicionJugador);
-            Debug.Log(" Guardado en checkpoint");
 
+            Debug.Log($"✅ Checkpoint activado en: {posicionJugador}");
+            Debug.Log($"✅ Escena guardada: {UnityEngine.SceneManagement.SceneManager.GetActiveScene().name}");
+
+            // Curar al jugador
             if (curarAlGuardar)
             {
                 playerLife vida = collision.GetComponent<playerLife>();
                 if (vida != null)
                 {
-                    vida.SetHealth(vida.MaxHealth); // 🩹 Cura al máximo
-                    Debug.Log(" Vida restaurada al máximo");
+                    vida.SetHealth(vida.MaxHealth);
+                    Debug.Log("✅ Vida restaurada al máximo");
                 }
             }
-            AudioManager.Instance.PlaySFX(checkpoint, 0.05f, 1f);
+
+            // Sonido
+            if (AudioManager.Instance != null && checkpoint != null)
+            {
+                AudioManager.Instance.PlaySFX(checkpoint, 0.05f, 1f);
+            }
         }
     }
 

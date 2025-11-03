@@ -40,10 +40,12 @@ public class ControladorDatosJuego : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject); // ✅ MUY IMPORTANTE
+            Debug.Log("✅ ControladorDatosJuego CREADO y marcado como persistente");
         }
         else
         {
+            Debug.Log("⚠️ Ya existe ControladorDatosJuego, destruyendo duplicado");
             Destroy(gameObject);
         }
     }
@@ -313,10 +315,21 @@ public class ControladorDatosJuego : MonoBehaviour
             datosjuego.posicionCamara = cam.transform.position;
         }
 
-        GuardarDatos();
-        Debug.Log("Checkpoint guardado");
-    }
+        // Guardar salud actual del jugador
+        if (player != null)
+        {
+            playerLife vidaScript = player.GetComponent<playerLife>();
+            if (vidaScript != null)
+            {
+                datosjuego.vidaActual = vidaScript.Health;
+                datosjuego.vidaMaxima = vidaScript.MaxHealth;
+                datosjuego.cantidadpociones = vidaScript.Potions;
+            }
+        }
 
+        GuardarDatos();
+        Debug.Log($"✅ Checkpoint guardado - Escena: {datosjuego.escenaActual}, Pos: {playerPosition}");
+    }
     public void AgregarMonedas(int cantidad)
     {
         datosjuego.cantidadMonedas += cantidad;

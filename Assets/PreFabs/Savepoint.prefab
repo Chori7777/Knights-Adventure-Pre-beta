@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3277857877669058082}
   - component: {fileID: 6526609760665955246}
   - component: {fileID: 3710958126684891018}
+  - component: {fileID: 7132340799905274501}
   m_Layer: 0
   m_Name: Savepoint
   m_TagString: SavePoint
@@ -150,3 +151,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &7132340799905274501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8881892248107932051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe151e1f214e5cc4bbc4e9e3960342d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
