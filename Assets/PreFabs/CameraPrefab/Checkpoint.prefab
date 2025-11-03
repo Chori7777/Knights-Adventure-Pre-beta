@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5158754279072747261}
   m_Layer: 0
   m_Name: Checkpoint
-  m_TagString: Untagged
+  m_TagString: CameraCheckpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,8 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf777de63fbae054b990474cfc53fd4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkpointIndex: 4
-  nuevoZoom: 8
+  targetCheckpoint: 1
+  nuevoZoom: 10
+  cooldownTiempo: 1
 --- !u!61 &5158754279072747261
 BoxCollider2D:
   m_ObjectHideFlags: 0

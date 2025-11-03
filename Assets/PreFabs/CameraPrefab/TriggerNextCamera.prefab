@@ -91,6 +91,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf777de63fbae054b990474cfc53fd4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkpointIndex: 0
+  targetCheckpoint: 1
   nuevoZoom: 8
   cooldownTiempo: 1

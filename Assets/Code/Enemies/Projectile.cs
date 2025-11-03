@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
 
     private Vector3 direccion;
     private Transform objetivo;
-    private int tipo;
+    private int tipo=0;
     private float tiempoTranscurrido = 0f;
     private int rebotes = 0;
     private int maxRebotes = 3;

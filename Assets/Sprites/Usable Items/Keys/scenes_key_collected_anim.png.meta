@@ -43,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -57,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -124,7 +124,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 17
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -144,10 +144,10 @@ TextureImporter:
       name: scenes_key_collected_anim_1
       rect:
         serializedVersion: 2
-        x: 18
-        y: 1
-        width: 13
-        height: 13
+        x: 16
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,9 +166,9 @@ TextureImporter:
       name: scenes_key_collected_anim_2
       rect:
         serializedVersion: 2
-        x: 37
+        x: 32
         y: 0
-        width: 59
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -184,11 +184,77 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: scenes_key_collected_anim_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 475139c55b7bc1d4d8545728d36fb2c0
+      internalID: -1522957331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scenes_key_collected_anim_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5903755551370da4c81af6a8afeffe42
+      internalID: -298966366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scenes_key_collected_anim_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f81739f57cac71d46afdc28109fc4a09
+      internalID: 1247598842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 7e62f696e4b117749aee10001b8a2bd0
     internalID: 0
     vertices: []
     indices: 
@@ -201,6 +267,9 @@ TextureImporter:
       scenes_key_collected_anim_0: -5251263758295756008
       scenes_key_collected_anim_1: 435168900222429316
       scenes_key_collected_anim_2: -7505456428557340685
+      scenes_key_collected_anim_3: -1522957331
+      scenes_key_collected_anim_4: -298966366
+      scenes_key_collected_anim_5: 1247598842
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

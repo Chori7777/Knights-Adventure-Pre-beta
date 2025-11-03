@@ -163,10 +163,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a050c4f09bacc4bb1d205501a3d82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackSound: {fileID: 0}
+  hurtSound: {fileID: 0}
   groundCheck: {fileID: 8912768487357915013}
   wallCheck: {fileID: 3176949573638936446}
   projectileSpawnPoint: {fileID: 5589603784711402807}
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 1814113125877117740, guid: 7bba41d5cf7a23a4692019778111ad4e, type: 3}
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -182,16 +184,15 @@ MonoBehaviour:
   fallMultiplier: 2.5
   lowJumpMultiplier: 3
   coyoteTime: 0.15
-  jumpBufferTime: 0.1
-  wallJumpCooldown: 1
   dashSpeed: 11
   dashDuration: 0.15
   dashCooldown: 0.5
   wallSlideSpeed: 0.1
-  wallSlideFastSpeed: 0.2
+  wallSlideAcceleration: 2
   wallJumpForceX: 8
   wallJumpForceY: 8
   wallGravity: 0.5
+  wallJumpCooldown: 1
   attackStepSpeed: 5
   attackStepDelay: 0.3
   attackStepDuration: 0.1
@@ -211,9 +212,14 @@ MonoBehaviour:
   canBlock: 1
   canThrowProjectile: 1
   groundCheckRay: 0.57
+  groundCheckSpacing: 0.3
   wallCheckDistance: 0.65
+  wallCheckHeight: 0.5
   inputDeadzone: 0.1
+  cameraShakeIntensity: 0.3
+  cameraShakeDuration: 0.2
   isTakingDamage: 0
+  cameraHolder: {fileID: 0}
 --- !u!114 &3639976318873108436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,7 +419,7 @@ Transform:
   m_GameObject: {fileID: 6949575867454782107}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.95, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

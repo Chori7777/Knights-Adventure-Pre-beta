@@ -16,6 +16,7 @@ TagManager:
   - Comsumable
   - Boss
   - HUD
+  - CameraCheckpoint
   layers:
   - Default
   - TransparentFX
