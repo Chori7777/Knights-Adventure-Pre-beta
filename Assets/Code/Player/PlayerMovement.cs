@@ -495,7 +495,7 @@ public class PlayerMovement : MonoBehaviour
         if (hurtSound != null)
         {
             float randomPitch = Random.Range(0.9f, 1.1f);
-            AudioManager.Instance.PlaySFX(hurtSound, 1f, randomPitch);
+            AudioManager.Instance.PlaySFX(hurtSound, 0.5f, randomPitch);
         }
     }
 

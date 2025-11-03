@@ -1291,10 +1291,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imagenes:
-  - {fileID: 1251298816554126203, guid: fe72c75c949d45241a1dc2277c25d908, type: 3}
-  - {fileID: 1355220390920799124, guid: a6cffef572a164d489a15f4b25ce299a, type: 3}
-  - {fileID: 1251298816554126203, guid: fe72c75c949d45241a1dc2277c25d908, type: 3}
-  - {fileID: -7443756053782179069, guid: 95ce38f7cd8d6b640851e4af2e44844d, type: 3}
+  - {fileID: -292255660462005774, guid: bc61c2137b66d4b3f93c559fb0118827, type: 3}
+  - {fileID: 8814018877669145379, guid: a085fd1b147f84c92a357820e1764149, type: 3}
+  - {fileID: 6320489845321787489, guid: cfebaa6b9f94f41cb999eac0229bb2aa, type: 3}
+  - {fileID: 6615105291565881644, guid: 15d3b6bb690d644a5bc7b540ff55d0bb, type: 3}
+  - {fileID: 3879690903547675473, guid: 18d21297a73df473dae04363f1749376, type: 3}
   tiempoPorImagen: 3
   escenaDestino: StartMenu
   imagenDisplay: {fileID: 28226962}
@@ -1302,11 +1303,16 @@ MonoBehaviour:
   tiempoFade: 1
   canvasGroup: {fileID: 1129753167}
   textos:
-  - "L\xB4anbfel"
-  - stop
-  - stop1
-  - stop2
-  - stop3
+  - Desde que se tiene memoria, existe el antiguo Reino de L'anbfel. Un reino prospero
+    donde las especies convivian en paz
+  - Pero tras cierto tiempo de bondad, llego la maldad, la cual ataco y arraso el
+    reino sin piedad
+  - Como ultimo acto, el rey te pidio que te fueses, y volvieses cuando estes listo
+    para vencer a las fuerzas del mal
+  - Durante mucho tiempo, estuviste lejos, esforzandote para convertirte en el caballero
+    supremo
+  - Ahora, volveras, venceras a las fuerzas del mal, y reclamaras la antigua armadura
+    dorada
   textoHistoria: {fileID: 2117075771}
 --- !u!224 &2147043160
 RectTransform:
