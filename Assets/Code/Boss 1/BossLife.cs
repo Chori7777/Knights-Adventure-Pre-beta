@@ -129,7 +129,7 @@ public class BossLife : MonoBehaviour
     private IEnumerator DeathSequence()
     {
         if (bossTrigger != null)
-            bossTrigger.JefeDerotado();
+            bossTrigger.JefeDerrotado();
 
         if (spawnSavePointOnDeath && savePointPrefab != null)
         {

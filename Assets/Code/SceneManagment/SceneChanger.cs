@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,5 +18,8 @@ public class PuertaTransicion : MonoBehaviour
             // Cambia de escena
             SceneManager.LoadScene(escenaDestino);
         }
+        Debug.Log("GameManager existe? " + (GameManager.instance != null));
+        Debug.Log("Datos existe? " + (GameManager.instance != null && GameManager.instance.datos != null));
     }
+   
 }

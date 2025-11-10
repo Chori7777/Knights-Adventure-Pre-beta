@@ -9,7 +9,6 @@ public class ChangeScene : MonoBehaviour
     private void CargarEscena(string nombreEscena)
     {
         Time.timeScale = 1f;
-
         if (FadeController.Instance != null)
         {
             FadeController.Instance.CambiarEscenaConFade(nombreEscena);
@@ -59,7 +58,6 @@ public class ChangeScene : MonoBehaviour
     public void NewGame()
     {
         BorrarPartidaGuardada();
-
         if (ControladorDatosJuego.Instance != null)
         {
             ControladorDatosJuego.Instance.ResetearDatos();
@@ -76,40 +74,44 @@ public class ChangeScene : MonoBehaviour
         }
     }
 
+
     public void ContinueGame()
     {
         if (ExistePartidaGuardada())
         {
+            Debug.Log(" Archivo de guardado encontrado, cargando partida...");
+
             if (ControladorDatosJuego.Instance != null)
             {
-                ControladorDatosJuego.Instance.CargarDatos();
-                string escenaGuardada = ControladorDatosJuego.Instance.datosjuego.escenaActual;
 
-                if (!string.IsNullOrEmpty(escenaGuardada))
-                {
-                    CargarEscena(escenaGuardada);
-                }
-                else
-                {
-                    CargarEscena("CharacterSelector");
-                }
+                ControladorDatosJuego.Instance.ContinuarPartida();
             }
+            else
+            {
+                Debug.LogError(" No existe ControladorDatosJuego en la escena");
+            }
+        }
+        else
+        {
+            Debug.LogWarning(" No se encontró ninguna partida guardada.");
         }
     }
 
     public bool ExistePartidaGuardada()
     {
-        string archivo = Application.persistentDataPath + "/datosjuego.json";
-        return File.Exists(archivo);
+        string archivo = Application.persistentDataPath + "/save.json";
+        bool existe = File.Exists(archivo);
+        Debug.Log($" Buscando guardado en: {archivo} - {(existe ? "✅ EXISTE" : "❌ NO EXISTE")}");
+        return existe;
     }
 
     private void BorrarPartidaGuardada()
     {
-        string archivo = Application.persistentDataPath + "/datosjuego.json";
-
+        string archivo = Application.persistentDataPath + "/save.json";
         if (File.Exists(archivo))
         {
             File.Delete(archivo);
+            Debug.Log("🗑 Partida guardada eliminada");
         }
     }
 

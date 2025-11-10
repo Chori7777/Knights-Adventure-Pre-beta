@@ -2,57 +2,47 @@
 
 public class savePoint : MonoBehaviour
 {
+    [Header("Configuración del Checkpoint")]
     [SerializeField] private AudioClip checkpoint;
-    [SerializeField] private bool autoGuardar = true;
     [SerializeField] private bool curarAlGuardar = true;
-    //Esto sirve para hacer que el jugador no pierda el progreso constantemente, lo que pasaba en anteriores versiones
-    //Aun esta algo crudo, pero se mejorara para la siguiente semana:)
+
+    private bool activado = false;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && autoGuardar)
+        if (activado) return;
+        if (!collision.CompareTag("Player")) return;
+
+        // Confirmamos que el ControladorDatosJuego esté activo
+        if (ControladorDatosJuego.Instance == null)
         {
-            Vector3 posicionJugador = transform.position;
-            Vector3 posicionCamara = Camera.main.transform.position;
-
-            ControladorDatosJuego.Instance.GuardarCheckpoint(posicionJugador);
-            Debug.Log(" Guardado en checkpoint");
-
-            if (curarAlGuardar)
-            {
-                playerLife vida = collision.GetComponent<playerLife>();
-                if (vida != null)
-                {
-                    vida.SetHealth(vida.MaxHealth); // 🩹 Cura al máximo
-                    Debug.Log(" Vida restaurada al máximo");
-                }
-            }
-            AudioManager.Instance.PlaySFX(checkpoint, 0.05f, 1f);
+            Debug.LogError("❌ No existe instancia de ControladorDatosJuego en la escena!");
+            return;
         }
-    }
 
-    // Llamar manualmente (por ejemplo, desde un botón)
-    public void GuardarManualmente(GameObject jugador)
-    {
-        Vector3 posicionJugador = transform.position;
-        Vector3 posicionCamara = Camera.main.transform.position;
+        // Guardamos la posición del checkpoint
+        Vector3 posicionCheckpoint = transform.position;
+        ControladorDatosJuego.Instance.GuardarCheckpoint(posicionCheckpoint);
+        Debug.Log($"✅ Checkpoint guardado en {posicionCheckpoint}");
 
-        ControladorDatosJuego.Instance.GuardarCheckpoint(posicionJugador);
-        Debug.Log("Guardado manual");
+        // Sonido del checkpoint
+        if (checkpoint != null)
+        {
+            AudioSource.PlayClipAtPoint(checkpoint, transform.position);
+        }
 
+        // Curar jugador si está activado
         if (curarAlGuardar)
         {
-            playerLife vida = jugador.GetComponent<playerLife>();
+            playerLife vida = collision.GetComponent<playerLife>();
             if (vida != null)
             {
-                vida.SetHealth(vida.MaxHealth);
-                Debug.Log("Vida restaurada al máximo");
+                vida.HealFull();
+                Debug.Log("💖 Vida restaurada al guardar en el checkpoint");
             }
         }
-    }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, 1f);
+        // Marcamos como activado
+        activado = true;
     }
 }

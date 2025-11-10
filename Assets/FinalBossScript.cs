@@ -5,7 +5,6 @@ public class FinalBossController : MonoBehaviour
 {
     [Header("Teleport Settings")]
     [SerializeField] private Transform[] teleportPositions;
-    [SerializeField] private float teleportSpeed = 10f; // Velocidad de "animación" de teleport
 
     [Header("Sphere Attack Settings")]
     [SerializeField] private GameObject purpleSphere;
@@ -141,7 +140,7 @@ public class FinalBossController : MonoBehaviour
         isAttacking = true;
 
         if (animator != null)
-            animator.SetTrigger("Attack" + attackNumber);
+            animator.SetTrigger("Attack");
 
         switch (attackNumber)
         {

@@ -4,29 +4,38 @@ using System.Collections;
 public class BossTrigger : MonoBehaviour
 {
     [Header("Configuración del Jefe")]
-    [SerializeField] private string bossID = "Boss1";        // ID único
-    [SerializeField] private GameObject bossPrefab;          // Prefab del jefe
-    [SerializeField] private Vector3 bossSpawnPosition;      // Posición de spawn
-    [SerializeField] private BossDoor[] doorsToClose;        // Puertas del boss
+    [SerializeField] private string bossID = "Boss1";
+    [SerializeField] private GameObject bossPrefab;
+    [SerializeField] private Vector3 bossSpawnPosition;
+    [SerializeField] private BossDoor puertaEntrada; // 🚪 puerta que se cierra detrás del jugador
+    [SerializeField] private BossDoor[] puertasArena; // 🔒 puertas que encierran la arena del jefe
 
     [Header("Opciones")]
     [SerializeField] private float cooldownTiempo = 1f;
     [SerializeField] private GameObject player;
 
+    [Header("Intro del Jefe")]
+    [SerializeField] private float introDuracion = 3f;
+    [SerializeField] private AudioClip musicaJefe;
+    [SerializeField] private AudioClip sfxInicioBatalla;
+    [SerializeField] private Animator cameraAnimator;
+    [SerializeField] private string nombreJefe;
+
     private bool enCooldown = false;
     private bool enPelea = false;
-
-    //  Referencia directa al jefe instanciado
     private BossLife spawnedBoss;
+
+    private bool jugadorDentro = false;
 
     void Start()
     {
-        // Revisar si el jefe ya fue derrotado
+        // Si ya fue derrotado, desactivar trigger
         if (ControladorDatosJuego.Instance != null &&
             ControladorDatosJuego.Instance.datosjuego.jefesDerrotados.Contains(bossID))
         {
-            Debug.Log("Jefe derrotado, no se activara");
+            Debug.Log("Jefe derrotado, no se activará.");
             gameObject.SetActive(false);
+            return;
         }
 
         if (bossSpawnPosition == Vector3.zero)
@@ -37,64 +46,86 @@ public class BossTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Player") && !enCooldown && !enPelea)
         {
-            IniciarBatalla();
+            jugadorDentro = true;
+
+            // Cierra la puerta detrás del jugador
+            if (puertaEntrada != null)
+                puertaEntrada.CerrarPuerta();
+
+            StartCoroutine(IniciarSecuenciaJefe());
             StartCoroutine(ActivarCooldown());
         }
     }
 
-    private void IniciarBatalla()
+    private IEnumerator IniciarSecuenciaJefe()
     {
-        Debug.Log(" Iniciando batalla de jefe");
+        Debug.Log("🌀 Iniciando secuencia de introducción del jefe...");
         enPelea = true;
 
-        // Spawnear jefe y guardar referencia directa
-        if (bossPrefab != null)
-        {
-            GameObject bossObj = Instantiate(bossPrefab, bossSpawnPosition, Quaternion.identity);
-            spawnedBoss = bossObj.GetComponent<BossLife>();
-            if (spawnedBoss != null)
-                spawnedBoss.SetBossTrigger(this); // Asigna referencia al trigger
-        }
+        var playerController = player.GetComponent<PlayerMovement>();
+        if (playerController != null) playerController.canMove = false;
 
-        CerrarPuertas();
+        // Cierra las puertas del área del jefe
+        foreach (BossDoor puerta in puertasArena)
+            if (puerta != null) puerta.CerrarPuerta();
+
+        // Instanciar jefe pero desactivado
+        GameObject bossObj = Instantiate(bossPrefab, bossSpawnPosition, Quaternion.identity);
+        spawnedBoss = bossObj.GetComponent<BossLife>();
+        bossObj.SetActive(false);
+
+        // Detener música actual
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.StopMusic();
+
+        // Cámara (si hay animación)
+        if (cameraAnimator != null)
+            cameraAnimator.SetTrigger("BossIntro");
+
+        // Mostrar nombre del jefe
+        if (BossNameUI.Instance != null)
+            BossNameUI.Instance.MostrarNombre(nombreJefe);
+
+        // Esperar duración de la intro
+        yield return new WaitForSeconds(introDuracion);
+
+        // Activar jefe
+        bossObj.SetActive(true);
+
+        // Reproducir efecto de inicio (como en Undertale)
+        if (AudioManager.Instance != null && sfxInicioBatalla != null)
+            AudioManager.Instance.PlaySFX(sfxInicioBatalla);
+
+        // Comenzar música del jefe
+        if (AudioManager.Instance != null && musicaJefe != null)
+            AudioManager.Instance.PlaySFX(sfxInicioBatalla);
+
+        // Habilitar movimiento del jugador
+        if (playerController != null) playerController.canMove = true;
+
+        Debug.Log("⚔️ ¡Comienza la batalla de jefe!");
     }
 
-    private void CerrarPuertas()
+    public void JefeDerrotado()
     {
-        foreach (BossDoor puerta in doorsToClose)
-        {
-            if (puerta != null)
-                puerta.CerrarPuerta();
-        }
-    }
-
-    // Este método será llamado por el jefe al morir
-    public void JefeDerotado()
-    {
-        Debug.Log("Jefe fue derrotado");
+        Debug.Log("💀 Jefe derrotado.");
         enPelea = false;
-        AbrirPuertas();
 
-        // Guarda que el jefe fue derrotado
+        // Abrir puertas del área del jefe
+        foreach (BossDoor puerta in puertasArena)
+            if (puerta != null) puerta.AbrirPuerta();
+
+        // Guardar progreso
         if (ControladorDatosJuego.Instance != null &&
             !ControladorDatosJuego.Instance.datosjuego.jefesDerrotados.Contains(bossID))
         {
             ControladorDatosJuego.Instance.datosjuego.jefesDerrotados.Add(bossID);
             ControladorDatosJuego.Instance.GuardarDatos();
-            Debug.Log(" Progreso guardado");
+            Debug.Log("💾 Progreso guardado.");
         }
 
-        // Desactiva el trigger
+        // Desactivar trigger
         gameObject.SetActive(false);
-    }
-
-    private void AbrirPuertas()
-    {
-        foreach (BossDoor puerta in doorsToClose)
-        {
-            if (puerta != null)
-                puerta.AbrirPuerta();
-        }
     }
 
     private IEnumerator ActivarCooldown()

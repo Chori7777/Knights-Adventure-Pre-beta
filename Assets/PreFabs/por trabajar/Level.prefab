@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6289731859234899821}
   - component: {fileID: 2197154382707961874}
-  - component: {fileID: 4124283967189303823}
   - component: {fileID: 4739827071581423377}
   - component: {fileID: 4049054928947787570}
+  - component: {fileID: 1407576102987414473}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -90,20 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4124283967189303823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6804467377014836902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd3d9f2f7134c3f4995234b1f97e792c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isOpen: 0
-  door: {fileID: 0}
 --- !u!95 &4739827071581423377
 Animator:
   serializedVersion: 7
@@ -162,3 +148,27 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.06895828, y: 0}
   m_Radius: 1.0010948
+--- !u!114 &1407576102987414473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6804467377014836902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c2c750306e75aa4e854324fc226eaee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elevator: {fileID: 0}
+  callToPointA: 1
+  interactKey: 101
+  interactionRadius: 1.5
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  requiresKey: 0
+  keyIcon: {fileID: 0}
+  leverOffSprite: {fileID: 1216064685986516364, guid: 53e78b49e7dc00d4bb181e5f265887c2, type: 3}
+  leverOnSprite: {fileID: 5219628491266913138, guid: 4588cf294dfdf404b9f21d8ddaed7d63, type: 3}
+  floatingTextPrefab: {fileID: 1251600260385154232, guid: df04a2ebe7a10ec4cae590020ab931c6, type: 3}

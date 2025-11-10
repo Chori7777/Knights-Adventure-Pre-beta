@@ -236,15 +236,27 @@ public class playerLife : MonoBehaviour
         AudioManager.Instance.StopMusicImmediately();
     }
 
- private void OnDeathComplete()
-{
-    AudioManager.Instance.StopMusicImmediately();
+    private void OnDeathComplete()
+    {
+        AudioManager.Instance.StopMusicImmediately();
 
-    if (ControladorDatosJuego.Instance != null)
-        ControladorDatosJuego.Instance.RespawnearJugadorEnCheckpoint();
-    else
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-}
+        if (ControladorDatosJuego.Instance != null)
+        {
+            // Guardar datos antes de morir
+            ControladorDatosJuego.Instance.datosjuego.escenaActual =
+                SceneManager.GetActiveScene().name;
+
+            ControladorDatosJuego.Instance.GuardarDatos();
+
+            // Ir a pantalla de GameOver
+            SceneManager.LoadScene("GameOver"); // ⚠️ Asegurate de tener una escena llamada así
+        }
+        else
+        {
+            // Si no hay controlador, recargar escena actual
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
 
 
 

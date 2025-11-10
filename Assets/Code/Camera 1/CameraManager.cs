@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
@@ -7,64 +7,63 @@ public class CameraManager : MonoBehaviour
     private Camera mainCamera;
     public float cameraSpeed = 5f;
 
-    public Transform[] checkpoints; // Array de GameObjects
-    [SerializeField] private int startingCheckpoint = 1; // Donde inicia la camara 
+    public Transform[] checkpoints;
+    [SerializeField] private int startingCheckpoint = 1;
     private int currentCameraIndex = 0;
     private bool isMoving = false;
     private Vector3 targetPosition;
-    private float cameraZ = -10f; // Z fijo para la cámara
-    public float cameraSize = 5f; // Tamaño de la cámara (zoom)
+    private float cameraZ = -10f;
+    public float cameraSize = 5f;
+
+    // ðŸ”¹ Variables nuevas para zoom suave
+    private float targetCameraSize;
+    public float zoomSpeed = 2f; // QuÃ© tan rÃ¡pido hace el zoom
 
     void Awake()
     {
-   
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        if (instance == null) instance = this;
+        else Destroy(gameObject);
     }
 
     void Start()
     {
         mainCamera = GetComponent<Camera>();
-        mainCamera.orthographicSize = cameraSize; // Aplicar zoom inicial
+        mainCamera.orthographicSize = cameraSize;
+        targetCameraSize = cameraSize; // Iniciar sincronizado
 
-        // Si no hay checkpoints asignados, buscarlos automáticamente por tag
         if (checkpoints == null || checkpoints.Length == 0)
         {
             GameObject[] checkpointObjects = GameObject.FindGameObjectsWithTag("CameraCheckpoint");
             checkpoints = new Transform[checkpointObjects.Length];
             for (int i = 0; i < checkpointObjects.Length; i++)
-            {
                 checkpoints[i] = checkpointObjects[i].transform;
-            }
         }
 
         if (checkpoints.Length > 0)
         {
-            // Usar el checkpoint inicial especificado
             currentCameraIndex = startingCheckpoint;
-
-            // Posicionar en el checkpoint inicial manteniendo Z fijo
             Vector3 startPos = checkpoints[currentCameraIndex].position;
             startPos.z = cameraZ;
             transform.position = startPos;
             targetPosition = startPos;
             isMoving = false;
 
-            Debug.Log("Cámara inicializada en checkpoint " + currentCameraIndex + " con " + checkpoints.Length + " checkpoints totales");
+            Debug.Log("CÃ¡mara inicializada en checkpoint " + currentCameraIndex + " con " + checkpoints.Length + " checkpoints totales");
         }
     }
 
     void Update()
     {
-        if (isMoving)
+        if (isMoving) MoveCamera();
+
+        // ðŸ”¹ Suaviza el zoom en cada frame
+        if (Mathf.Abs(mainCamera.orthographicSize - targetCameraSize) > 0.01f)
         {
-            MoveCamera();
+            mainCamera.orthographicSize = Mathf.Lerp(
+                mainCamera.orthographicSize,
+                targetCameraSize,
+                zoomSpeed * Time.deltaTime
+            );
         }
     }
 
@@ -72,7 +71,6 @@ public class CameraManager : MonoBehaviour
     {
         transform.position = Vector3.Lerp(transform.position, targetPosition, cameraSpeed * Time.deltaTime);
 
-        // Detectar si llegó al destino
         if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
         {
             transform.position = targetPosition;
@@ -80,49 +78,45 @@ public class CameraManager : MonoBehaviour
         }
     }
 
-    // Llamar cuando el jugador pase un trigger
     public void AvanzarCamara()
     {
         if (currentCameraIndex < checkpoints.Length - 1)
         {
             currentCameraIndex++;
             Vector3 newPos = checkpoints[currentCameraIndex].position;
-            newPos.z = cameraZ; // Mantener Z fijo
+            newPos.z = cameraZ;
             targetPosition = newPos;
             isMoving = true;
-            Debug.Log("Cámara avanzó al checkpoint " + currentCameraIndex);
+            Debug.Log("CÃ¡mara avanzÃ³ al checkpoint " + currentCameraIndex);
         }
     }
 
-    // Retroceder cámara (opcional)
     public void RetrocederCamara()
     {
         if (currentCameraIndex > 0)
         {
             currentCameraIndex--;
             Vector3 newPos = checkpoints[currentCameraIndex].position;
-            newPos.z = cameraZ; // Mantener Z fijo
+            newPos.z = cameraZ;
             targetPosition = newPos;
             isMoving = true;
-            Debug.Log("Cámara retrocedió al checkpoint " + currentCameraIndex);
+            Debug.Log("CÃ¡mara retrocediÃ³ al checkpoint " + currentCameraIndex);
         }
     }
 
-    // Ir a una posición específica
     public void IrAlCheckpoint(int index)
     {
         if (index >= 0 && index < checkpoints.Length)
         {
             currentCameraIndex = index;
             Vector3 newPos = checkpoints[index].position;
-            newPos.z = cameraZ; // Mantener Z fijo
+            newPos.z = cameraZ;
             targetPosition = newPos;
             isMoving = true;
-            Debug.Log("Cámara se movió al checkpoint " + index);
+            Debug.Log("CÃ¡mara se moviÃ³ al checkpoint " + index);
         }
     }
 
-    // Añadir nuevas posiciones de cámara dinámicamente
     public void AgregarCheckpoint(Vector3 posicion)
     {
         System.Array.Resize(ref checkpoints, checkpoints.Length + 1);
@@ -131,7 +125,6 @@ public class CameraManager : MonoBehaviour
         checkpoints[checkpoints.Length - 1] = newCheckpoint.transform;
     }
 
-    // Resetear la cámara al checkpoint inicial (Me encantaria mejorar y sacar esto para poder hacer los niveles mas continuos)
     public void ResetearCamara()
     {
         currentCameraIndex = startingCheckpoint;
@@ -145,34 +138,31 @@ public class CameraManager : MonoBehaviour
         }
     }
 
-    // Cambiar el zoom de la cámara
+    // ðŸ”¹ Nuevo sistema: en lugar de cambiar el tamaÃ±o directamente,
+    // cambiamos el â€œobjetivoâ€ y el zoom se ajusta suavemente en Update()
     public void SetCameraSize(float newSize)
     {
-        cameraSize = newSize;
-        mainCamera.orthographicSize = cameraSize;
+        targetCameraSize = Mathf.Max(1f, newSize);
     }
 
-    // Obtener el tamaño actual de la cámara (zoom actual)
     public float GetCameraSize()
     {
         return mainCamera.orthographicSize;
     }
 
-    // Alejar la cámara (zoom out)
     public void AlejarCamara(float cantidad = 2f)
     {
-        SetCameraSize(cameraSize + cantidad);
+        SetCameraSize(targetCameraSize + cantidad);
     }
 
-    // Acercar la cámara (zoom in)
     public void AcercarCamara(float cantidad = 2f)
     {
-        SetCameraSize(Mathf.Max(1f, cameraSize - cantidad));
+        SetCameraSize(targetCameraSize - cantidad);
     }
 
-    // Obtener el checkpoint actual
     public int GetCurrentCheckpoint()
     {
         return currentCameraIndex;
     }
+
 }
