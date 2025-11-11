@@ -5,7 +5,6 @@ public class BossRoomTrigger : MonoBehaviour
     [Header("Referencias")]
     [SerializeField] private GameObject boss;            // Jefe que se activa
     [SerializeField] private Animator doorAnimator;      // Animator de la puerta
-    [SerializeField] private string closeDoorTrigger = "DoorClosed"; // Trigger de cierre de la puerta
     [SerializeField] private AudioClip bossMusic;        // Música de jefe
 
     [Header("Opciones")]

@@ -291,9 +291,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 530.3, y: -321}
+  m_AnchoredPosition: {x: 530.3, y: -266.97}
   m_SizeDelta: {x: 39.7237, y: 39.9477}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0.4999999}
 --- !u!114 &136244803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,9 +557,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 430.4, y: -323}
+  m_AnchoredPosition: {x: 428, y: -266.97}
   m_SizeDelta: {x: 39.7237, y: 39.9477}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.50000167, y: 0.5000002}
 --- !u!114 &229365591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -603,7 +603,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 229365592}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 608611523}
+        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Options
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &229365592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1548,6 +1560,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2056382711459889491, guid: e7af247ee2073d545a162936beda50f6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 9.000122
+      objectReference: {fileID: 0}
+    - target: {fileID: 2056382711459889491, guid: e7af247ee2073d545a162936beda50f6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 283
+      objectReference: {fileID: 0}
     - target: {fileID: 6995545383665080390, guid: e7af247ee2073d545a162936beda50f6, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2384,6 +2404,14 @@ PrefabInstance:
     - target: {fileID: 3483346193209904380, guid: be0e40038e263df4f9db0bde954bab73, type: 3}
       propertyPath: m_Name
       value: FadeImage
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607285859387687102, guid: be0e40038e263df4f9db0bde954bab73, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607285859387687102, guid: be0e40038e263df4f9db0bde954bab73, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

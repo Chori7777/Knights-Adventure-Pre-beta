@@ -207,6 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1
+  Dust: {fileID: 8300000, guid: 42ae3beb092d45c4d9349c81570926a3, type: 3}
   knockbackForce: 6
   knockbackRecoveryTime: 0.4
   deathDelay: 1.5

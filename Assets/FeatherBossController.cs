@@ -3,21 +3,20 @@ using UnityEngine;
 
 public class FeatherBossController : MonoBehaviour
 {
-    [Header("🎯 Configuración de Movimiento")]
+    [Header(" Configuración de Movimiento")]
     [SerializeField] private Transform posicionIzquierda;
     [SerializeField] private Transform posicionDerecha;
-    [SerializeField] private float velocidadMovimiento = 3f;
     [SerializeField] private float cooldownMovimiento = 5f;
     [SerializeField] private float duracionTeletransporte = 0.5f;
     [SerializeField] private bool voltearHaciaJugador = true;
     private bool estaEnPosicionIzquierda = true;
     private SpriteRenderer spriteRenderer;
 
-    [Header("🪶 Proyectil Base")]
+    [Header(" Proyectil Base")]
     [SerializeField] private GameObject prefabPluma;
     [SerializeField] private float velocidadPluma = 8f;
 
-    [Header("💥 Ataque 1: Plumas Cayendo")]
+    [Header(" Ataque 1: Plumas Cayendo")]
     [SerializeField] private int cantidadPlumasCayendo = 5;
     [SerializeField] private float intervaloPlumasCayendo = 0.3f;
     [SerializeField] private float velocidadCaida = 5f;
@@ -26,34 +25,31 @@ public class FeatherBossController : MonoBehaviour
     [SerializeField] private float alturaSpawn = 6f;
     [SerializeField] private AudioClip sonidoPlumaCayendo;
 
-    [Header("➕ Ataque 2: Patrón Cruz y X")]
+    [Header(" Ataque 2: Patrón Cruz y X")]
     [SerializeField] private float distanciaCruz = 3f;
     [SerializeField] private float duracionSeguimiento = 2f;
-    [SerializeField] private float tiempoAdvertencia = 1f;
-    [SerializeField] private GameObject prefabIndicadorAdvertencia;
     [SerializeField] private AudioClip sonidoPatronCruz;
-    [SerializeField] private AudioClip sonidoBeepAdvertencia;
 
-    [Header("🎯 Ataque 3: Plumas Teledirigidas Triple")]
+    [Header(" Ataque 3: Plumas Teledirigidas Triple")]
     [SerializeField] private int cantidadPlumasTeledirigidas = 3;
-    [SerializeField] private float intervaloPlumasTeledirigidas = 0.25f; // 🔥 MÁS TIEMPO entre plumas
-    [SerializeField] private float anguloDispersion = 15f; // 🔥 MENOR dispersión (antes 20°)
-    [SerializeField] private float velocidadTeledirigida = 6f; // 🔥 MÁS LENTA (antes 8)
-    [SerializeField] private float fuerzaTeledirigida = 2f; // 🔥 MENOS agresiva (antes 3)
-    [SerializeField] private float rangoActivacion = 6f; // 🔥 MENOR rango (antes 8)
+    [SerializeField] private float intervaloPlumasTeledirigidas = 0.25f;
+    [SerializeField] private float anguloDispersion = 15f;
+    [SerializeField] private float velocidadTeledirigida = 6f;
+    [SerializeField] private float fuerzaTeledirigida = 2f;
+    [SerializeField] private float rangoActivacion = 6f;
     [SerializeField] private AudioClip sonidoPlumaTeledirigida;
 
-    [Header("🌊 Ataque 4: Ola de Plumas (con huecos)")]
+    [Header(" Ataque 4: Ola de Plumas (con huecos)")]
     [SerializeField] private int cantidadPlumasOla = 8;
     [SerializeField] private int cantidadHuecos = 2;
     [SerializeField] private float velocidadInicialOla = 3f;
     [SerializeField] private float aceleracionOla = 1.5f;
     [SerializeField] private float espaciadoVertical = 1f;
-    [SerializeField] private float offsetInicioY = -3f; // 🔥 Ahora es un OFFSET desde la posición del jefe
-    [SerializeField] private bool usarPosicionJefeParaOla = true; // 🔥 Si TRUE, usa posición del jefe + offset
+    [SerializeField] private float offsetInicioY = -3f;
+    [SerializeField] private bool usarPosicionJefeParaOla = true;
     [SerializeField] private AudioClip sonidoAtaqueOla;
 
-    [Header("⬆️ Ataque 5: Ola Ascendente")]
+    [Header(" Ataque 5: Ola Ascendente")]
     [SerializeField] private Transform puntoSpawnInferior;
     [SerializeField] private int cantidadPlumasAscendentes = 6;
     [SerializeField] private float velocidadAscenso = 4f;
@@ -62,7 +58,7 @@ public class FeatherBossController : MonoBehaviour
     [SerializeField] private float rangoSpawnXInferior = 8f;
     [SerializeField] private AudioClip sonidoAtaqueAscendente;
 
-    [Header("💥 Ataque 6: Explosión de Plumas")]
+    [Header(" Ataque 6: Explosión de Plumas")]
     [SerializeField] private Transform puntoExplosion;
     [SerializeField] private int puntosExplosion = 4;
     [SerializeField] private float rangoExplosionX = 6f;
@@ -72,24 +68,24 @@ public class FeatherBossController : MonoBehaviour
     [SerializeField] private float velocidadExplosionMax = 1.2f;
     [SerializeField] private AudioClip sonidoExplosion;
 
-    [Header("🎮 Referencias")]
+    [Header(" Referencias")]
     [SerializeField] private Transform jugador;
     [SerializeField] private Animator animator;
     [SerializeField] private BossLife vidaJefe;
 
-    [Header("🔊 Audio")]
+    [Header(" Audio")]
     [SerializeField] private AudioClip sonidoMovimiento;
     [SerializeField] private AudioClip sonidoTeletransporte;
 
-    [Header("⏱️ Timing de Ataques")]
+    [Header(" Timing de Ataques")]
     [SerializeField] private float tiempoEntreAtaques = 2.5f;
 
-    [Header("🎬 Introducción del Jefe")]
+    [Header(" Introducción del Jefe")]
     [SerializeField] private bool mostrarIntroduccion = true;
 
     private Coroutine coroutinaMovimiento;
     private bool jefaIniciado = false;
-    private bool jefaMuerto = false; // 🔥 NUEVO: evita que siga atacando al morir
+    private bool jefe = false;
 
     private void Start()
     {
@@ -98,8 +94,6 @@ public class FeatherBossController : MonoBehaviour
         if (vidaJefe == null)
         {
             vidaJefe = GetComponent<BossLife>();
-            if (vidaJefe == null)
-                Debug.LogWarning("⚠️ BossLife no asignado en FeatherBossController.");
         }
 
         transform.position = posicionIzquierda.position;
@@ -119,7 +113,7 @@ public class FeatherBossController : MonoBehaviour
 
     private void Update()
     {
-        if (!jefaIniciado || jefaMuerto) return; // 🔥 Detener update si está muerto
+        if (!jefaIniciado || jefe) return;
 
         if (voltearHaciaJugador && jugador != null)
         {
@@ -129,46 +123,38 @@ public class FeatherBossController : MonoBehaviour
                 spriteRenderer.flipX = true;
         }
 
-        if (vidaJefe != null && vidaJefe.health <= 0 && !jefaMuerto)
+        if (vidaJefe != null && vidaJefe.health <= 0 && !jefe)
         {
             OnJefaMuerto();
         }
     }
 
-
     private void OnJefaMuerto()
     {
-        jefaMuerto = true;
-
-        
+        jefe = true;
         StopAllCoroutines();
-
-        // 🔥 CRÍTICO: Notificar a BossLife para que ejecute la secuencia de muerte
-
-
-        // Desactivar este script para que no siga ejecutándose
         this.enabled = false;
     }
 
     private IEnumerator CicloMovimiento()
     {
-        while (!jefaMuerto) // 🔥 Detener si muere
+        while (!jefe)
         {
             yield return new WaitForSeconds(cooldownMovimiento);
-            if (!jefaMuerto) // 🔥 Verificar antes de mover
+            if (!jefe)
                 MoverAPosicionOpuesta();
         }
     }
 
     public void OnBossHit()
     {
-        if (jefaMuerto) return; // 🔥 No reaccionar si está muerto
+        if (jefe) return;
         MoverAPosicionOpuesta();
     }
 
     private void MoverAPosicionOpuesta()
     {
-        if (jefaMuerto) return; // 🔥 No mover si está muerto
+        if (jefe) return;
 
         if (coroutinaMovimiento != null)
             StopCoroutine(coroutinaMovimiento);
@@ -213,27 +199,24 @@ public class FeatherBossController : MonoBehaviour
         }
 
         spriteRenderer.color = colorOriginal;
-
-        if (animator != null)
-            animator.SetTrigger("Appear");
     }
 
     private IEnumerator CicloAtaques()
     {
         yield return new WaitForSeconds(1f);
 
-        while (!jefaMuerto) // 🔥 Detener si muere
+        while (!jefe)
         {
             yield return new WaitForSeconds(tiempoEntreAtaques);
 
-            if (jefaMuerto) break; // 🔥 Salir del loop
+            if (jefe) break;
 
             if (vidaJefe != null && vidaJefe.health > vidaJefe.maxHealth / 2)
             {
                 int numeroAtaque = Random.Range(1, 7);
                 StartCoroutine(EjecutarAtaque(numeroAtaque));
             }
-            else if (vidaJefe != null && vidaJefe.health > 0) // 🔥 Verificar que tenga vida
+            else if (vidaJefe != null && vidaJefe.health > 0)
             {
                 int primerAtaque = Random.Range(1, 7);
                 int segundoAtaque = Random.Range(1, 7);
@@ -248,15 +231,14 @@ public class FeatherBossController : MonoBehaviour
 
     private IEnumerator EjecutarAtaque(int numeroAtaque)
     {
-        if (jefaMuerto) yield break; // 🔥 No ejecutar si está muerto
+        if (jefe) yield break;
 
         if (animator != null)
-            animator.SetTrigger("Attack");
+            animator.SetBool("Attack", true);
 
         switch (numeroAtaque)
         {
             case 1: yield return StartCoroutine(Ataque1_PlumasCayendo()); break;
-            case 2: yield return StartCoroutine(Ataque2_PatronCruzYX()); break;
             case 3: yield return StartCoroutine(Ataque3_PlumasTeledirigidas()); break;
             case 4: yield return StartCoroutine(Ataque4_OlaPlumas()); break;
             case 5: yield return StartCoroutine(Ataque5_OlaAscendente()); break;
@@ -270,7 +252,7 @@ public class FeatherBossController : MonoBehaviour
 
         for (int i = 0; i < cantidadPlumasCayendo; i++)
         {
-            if (jefaMuerto) yield break; // 🔥 Detener si muere
+            if (jefe) yield break;
 
             float randomX = centroSpawn.x + Random.Range(-rangoSpawnX, rangoSpawnX);
             Vector3 posSpawn = new Vector3(randomX, centroSpawn.y + alturaSpawn, 0);
@@ -291,161 +273,10 @@ public class FeatherBossController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
     }
 
-    private IEnumerator Ataque2_PatronCruzYX()
-    {
-        if (jugador == null || jefaMuerto) yield break;
-
-        Vector2[] direccionesCruz = {
-            Vector2.up, Vector2.down, Vector2.left, Vector2.right
-        };
-
-        GameObject[] advertenciasCruz = new GameObject[direccionesCruz.Length];
-
-        for (int i = 0; i < direccionesCruz.Length; i++)
-        {
-            Vector3 posSpawn = jugador.position + (Vector3)(direccionesCruz[i] * distanciaCruz);
-
-            if (prefabIndicadorAdvertencia != null)
-            {
-                advertenciasCruz[i] = Instantiate(prefabIndicadorAdvertencia, posSpawn, Quaternion.identity);
-                advertenciasCruz[i].transform.localScale = Vector3.one * 0.5f;
-            }
-        }
-
-        if (sonidoBeepAdvertencia != null)
-            AudioManager.Instance.PlaySFX(sonidoBeepAdvertencia);
-
-        float tiempoTranscurrido = 0f;
-        while (tiempoTranscurrido < duracionSeguimiento)
-        {
-            if (jefaMuerto)
-            {
-                // Limpiar advertencias si muere
-                foreach (var adv in advertenciasCruz)
-                    if (adv != null) Destroy(adv);
-                yield break;
-            }
-
-            for (int i = 0; i < direccionesCruz.Length; i++)
-            {
-                if (advertenciasCruz[i] != null && jugador != null)
-                {
-                    Vector3 posObjetivo = jugador.position + (Vector3)(direccionesCruz[i] * distanciaCruz);
-                    advertenciasCruz[i].transform.position = Vector3.Lerp(
-                        advertenciasCruz[i].transform.position,
-                        posObjetivo,
-                        Time.deltaTime * 5f
-                    );
-                }
-            }
-            tiempoTranscurrido += Time.deltaTime;
-            yield return null;
-        }
-
-        yield return new WaitForSeconds(tiempoAdvertencia);
-
-        for (int i = 0; i < direccionesCruz.Length; i++)
-        {
-            if (advertenciasCruz[i] != null)
-            {
-                Vector3 posSpawn = advertenciasCruz[i].transform.position;
-                GameObject pluma = Instantiate(prefabPluma, posSpawn, Quaternion.identity);
-
-                Rigidbody2D rb = pluma.GetComponent<Rigidbody2D>();
-                if (rb != null)
-                    rb.linearVelocity = -direccionesCruz[i] * velocidadPluma;
-
-                RotarPlumaHaciaDireccion(pluma, -direccionesCruz[i]);
-
-                Destroy(advertenciasCruz[i]);
-            }
-        }
-
-        if (sonidoPatronCruz != null)
-            AudioManager.Instance.PlaySFX(sonidoPatronCruz);
-
-        yield return new WaitForSeconds(0.5f);
-
-        if (jefaMuerto) yield break; // 🔥 Verificar antes de la segunda fase
-
-        // Fase X
-        Vector2[] direccionesX = {
-            new Vector2(1, 1).normalized,
-            new Vector2(-1, 1).normalized,
-            new Vector2(1, -1).normalized,
-            new Vector2(-1, -1).normalized
-        };
-
-        GameObject[] advertenciasX = new GameObject[direccionesX.Length];
-
-        for (int i = 0; i < direccionesX.Length; i++)
-        {
-            Vector3 posSpawn = jugador.position + (Vector3)(direccionesX[i] * distanciaCruz);
-
-            if (prefabIndicadorAdvertencia != null)
-            {
-                advertenciasX[i] = Instantiate(prefabIndicadorAdvertencia, posSpawn, Quaternion.identity);
-                advertenciasX[i].transform.localScale = Vector3.one * 0.5f;
-            }
-        }
-
-        if (sonidoBeepAdvertencia != null)
-            AudioManager.Instance.PlaySFX(sonidoBeepAdvertencia);
-
-        tiempoTranscurrido = 0f;
-        while (tiempoTranscurrido < duracionSeguimiento)
-        {
-            if (jefaMuerto)
-            {
-                foreach (var adv in advertenciasX)
-                    if (adv != null) Destroy(adv);
-                yield break;
-            }
-
-            for (int i = 0; i < direccionesX.Length; i++)
-            {
-                if (advertenciasX[i] != null && jugador != null)
-                {
-                    Vector3 posObjetivo = jugador.position + (Vector3)(direccionesX[i] * distanciaCruz);
-                    advertenciasX[i].transform.position = Vector3.Lerp(
-                        advertenciasX[i].transform.position,
-                        posObjetivo,
-                        Time.deltaTime * 5f
-                    );
-                }
-            }
-            tiempoTranscurrido += Time.deltaTime;
-            yield return null;
-        }
-
-        yield return new WaitForSeconds(tiempoAdvertencia);
-
-        for (int i = 0; i < direccionesX.Length; i++)
-        {
-            if (advertenciasX[i] != null)
-            {
-                Vector3 posSpawn = advertenciasX[i].transform.position;
-                GameObject pluma = Instantiate(prefabPluma, posSpawn, Quaternion.identity);
-
-                Rigidbody2D rb = pluma.GetComponent<Rigidbody2D>();
-                if (rb != null)
-                    rb.linearVelocity = -direccionesX[i] * velocidadPluma;
-
-                RotarPlumaHaciaDireccion(pluma, -direccionesX[i]);
-
-                Destroy(advertenciasX[i]);
-            }
-        }
-
-        if (sonidoPatronCruz != null)
-            AudioManager.Instance.PlaySFX(sonidoPatronCruz);
-
-        yield return new WaitForSeconds(0.5f);
-    }
-
+    
     private IEnumerator Ataque3_PlumasTeledirigidas()
     {
-        if (jugador == null || jefaMuerto) yield break;
+        if (jugador == null || jefe) yield break;
 
         Vector2 direccionJugador = (jugador.position - transform.position).normalized;
 
@@ -454,7 +285,7 @@ public class FeatherBossController : MonoBehaviour
 
         for (int i = 0; i < cantidadPlumasTeledirigidas; i++)
         {
-            if (jefaMuerto) yield break; // 🔥 Detener si muere
+            if (jefe) yield break;
 
             float anguloDispersionActual = (i - (cantidadPlumasTeledirigidas - 1) / 2f) * this.anguloDispersion;
             Vector2 direccion = Quaternion.Euler(0, 0, anguloDispersionActual) * direccionJugador;
@@ -472,7 +303,7 @@ public class FeatherBossController : MonoBehaviour
             if (sonidoPlumaTeledirigida != null)
                 AudioManager.Instance.PlaySFX(sonidoPlumaTeledirigida);
 
-            yield return new WaitForSeconds(intervaloPlumasTeledirigidas); // 🔥 Ahora configurable
+            yield return new WaitForSeconds(intervaloPlumasTeledirigidas);
         }
 
         yield return new WaitForSeconds(0.5f);
@@ -480,12 +311,11 @@ public class FeatherBossController : MonoBehaviour
 
     private IEnumerator Ataque4_OlaPlumas()
     {
-        if (jefaMuerto) yield break;
+        if (jefe) yield break;
 
         Vector2 direccionOla = estaEnPosicionIzquierda ? Vector2.right : Vector2.left;
         float inicioX = estaEnPosicionIzquierda ? posicionIzquierda.position.x : posicionDerecha.position.x;
 
-        // 🔥 NUEVO: Usar posición del jefe + offset
         float inicioYCalculado = usarPosicionJefeParaOla ?
             transform.position.y + offsetInicioY :
             offsetInicioY;
@@ -507,7 +337,7 @@ public class FeatherBossController : MonoBehaviour
 
         for (int i = 0; i < cantidadPlumasOla; i++)
         {
-            if (jefaMuerto) yield break;
+            if (jefe) yield break;
 
             if (System.Array.IndexOf(indicesHuecos, i) != -1)
                 continue;
@@ -533,13 +363,13 @@ public class FeatherBossController : MonoBehaviour
 
     private IEnumerator Ataque5_OlaAscendente()
     {
-        if (jefaMuerto) yield break;
+        if (jefe) yield break;
 
         Vector3 centroSpawn = puntoSpawnInferior != null ? puntoSpawnInferior.position : new Vector3(0, -6, 0);
 
         for (int i = 0; i < cantidadPlumasAscendentes; i++)
         {
-            if (jefaMuerto) yield break;
+            if (jefe) yield break;
 
             float randomX = centroSpawn.x + Random.Range(-rangoSpawnXInferior, rangoSpawnXInferior);
             Vector3 posSpawn = new Vector3(randomX, centroSpawn.y, 0);
@@ -563,7 +393,7 @@ public class FeatherBossController : MonoBehaviour
 
     private IEnumerator Ataque6_ExplosionPlumas()
     {
-        if (jefaMuerto) yield break;
+        if (jefe) yield break;
 
         if (animator != null)
             animator.SetTrigger("AttackUp");
@@ -580,7 +410,7 @@ public class FeatherBossController : MonoBehaviour
 
         foreach (Vector3 punto in puntos)
         {
-            if (jefaMuerto) yield break;
+            if (jefe) yield break;
 
             float anguloPaso = 360f / cantidadPlumasPorExplosion;
 
@@ -619,8 +449,6 @@ public class FeatherBossController : MonoBehaviour
         pluma.transform.rotation = Quaternion.Euler(0, 0, angulo - 90);
     }
 }
-
-// ===== COMPONENTES AUXILIARES =====
 
 public class PlumaCayendo : MonoBehaviour
 {

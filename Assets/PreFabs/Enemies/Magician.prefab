@@ -66,7 +66,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -46.051334, y: 9.82723, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.03125, y: 1.03125, z: 1.03125}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4833104585946626007}
@@ -208,13 +208,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flySpeed: 3
   chaseSpeed: 5
-  patrolPoints: []
+  patrolPoints:
+  - {fileID: 0}
   waypointReachDistance: 0.56
   idleTimeAtWaypoint: 1
   detectionRange: 5.96
   canChasePlayer: 1
   chaseHeight: 2
-  restingSpot: {fileID: 8592868133758997895}
+  restingSpot: {fileID: 0}
   returnToRestTime: 5
   restDuration: 3
 --- !u!114 &2190046624837672690
@@ -242,6 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1
+  Dust: {fileID: 0}
   knockbackForce: 6
   knockbackRecoveryTime: 0.4
   deathDelay: 1.5

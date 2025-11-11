@@ -6,6 +6,7 @@ public class EnemyLife : MonoBehaviour
     [Header("Vida")]
     [SerializeField] private int maxHealth = 3;
     private int currentHealth;
+    [SerializeField] private AudioClip Dust;
 
     [Header("Knockback")]
     [SerializeField] private float knockbackForce = 6f;
@@ -22,7 +23,6 @@ public class EnemyLife : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    //Recibir daño sin knockback
     public void TakeDamage(int damage)
     {
         if (core.IsDead || core.IsTakingDamage) return;
@@ -30,9 +30,6 @@ public class EnemyLife : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth < 0) currentHealth = 0;
 
-
-
-        // Animación de daño
         if (core.animController != null)
         {
             core.animController.SetDamage(true);
@@ -48,7 +45,7 @@ public class EnemyLife : MonoBehaviour
             StartCoroutine(DamageRecovery());
         }
     }
-    //recibir daño con knockback
+
     public void TakeDamageWithKnockback(Vector2 attackPosition, int damage)
     {
         if (core.IsDead || core.IsTakingDamage) return;
@@ -56,11 +53,8 @@ public class EnemyLife : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth < 0) currentHealth = 0;
 
-
-
         core.SetTakingDamage(true);
 
-        // Animación de daño
         if (core.animController != null)
         {
             core.animController.SetDamage(true);
@@ -76,7 +70,7 @@ public class EnemyLife : MonoBehaviour
             StartCoroutine(DamageRecovery());
         }
     }
-    //Aca se aplica el knockback
+
     private void ApplyKnockback(Vector2 attackPosition)
     {
         if (core.rb == null) return;
@@ -99,14 +93,12 @@ public class EnemyLife : MonoBehaviour
             core.animController.SetDamage(false);
         }
 
-        // Detener movimiento horizontal después del knockback
         if (core.rb != null)
         {
             core.rb.linearVelocity = new Vector2(0, core.rb.linearVelocity.y);
         }
     }
 
-//cuando muere el enemigo 
     private void Die()
     {
         if (core.IsDead) return;
@@ -114,29 +106,32 @@ public class EnemyLife : MonoBehaviour
         core.SetDead(true);
         core.SetTakingDamage(false);
 
-
-        // Animación de muerte
         if (core.animController != null)
         {
+            AudioManager.Instance.PlaySFX(Dust, 0.4f, 1f);
             core.animController.SetDamage(false);
             core.animController.SetDeath(true);
         }
 
-        // Detener movimiento para q no siga chaseando al jugador
         if (core.rb != null)
         {
             core.rb.linearVelocity = Vector2.zero;
+            core.rb.gravityScale = 0;
         }
 
-        // Desactivar colisiones para q el jugador no sea golpeado injustamente
         Collider2D col = GetComponent<Collider2D>();
         if (col != null) col.enabled = false;
 
-        // Desactivar módulos
+        StartCoroutine(DeathSequence());
+    }
+
+    private IEnumerator DeathSequence()
+    {
         DisableModules();
 
-        // Destruir después del delay
-        Destroy(gameObject, deathDelay);
+        yield return new WaitForSeconds(deathDelay);
+
+        Destroy(gameObject);
     }
 
     private void DisableModules()
@@ -147,7 +142,6 @@ public class EnemyLife : MonoBehaviour
         if (core.flying != null) core.flying.enabled = false;
     }
 
-//colision para hacerle daño y recibir de donde fue el golpe
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Espada") && !core.IsDead)
@@ -156,6 +150,7 @@ public class EnemyLife : MonoBehaviour
             TakeDamageWithKnockback(attackPosition, 1);
         }
     }
+
     public int CurrentHealth => currentHealth;
     public int MaxHealth => maxHealth;
     public float HealthPercentage => (float)currentHealth / maxHealth;

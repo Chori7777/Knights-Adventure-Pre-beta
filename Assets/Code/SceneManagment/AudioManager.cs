@@ -132,7 +132,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            // Detiene la música abruptamente
+
             if (musicFadeCoroutine != null)
             {
                 StopCoroutine(musicFadeCoroutine);
@@ -142,7 +142,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // Método específico para detener música abruptamente (por ejemplo al morir)
     public void StopMusicImmediately()
     {
         if (musicFadeCoroutine != null)

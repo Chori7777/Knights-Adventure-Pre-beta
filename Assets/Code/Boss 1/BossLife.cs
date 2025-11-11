@@ -26,8 +26,7 @@ public class BossLife : MonoBehaviour
     private bool recibiendoDanio = false;
 
     [Header("Script de ataque del jefe")]
-    [SerializeField] private MonoBehaviour scriptAtaque; // <- arrastrás acá el script del jefe
-
+    [SerializeField] private MonoBehaviour scriptAtaque; 
     private BossTrigger bossTrigger;
 
     private void Awake()
@@ -109,7 +108,6 @@ public class BossLife : MonoBehaviour
         isDead = true;
         recibiendoDanio = false;
 
-        // 🔥 Detiene el script de ataque que le asignaste
         if (scriptAtaque != null)
         {
             scriptAtaque.StopAllCoroutines();
@@ -147,7 +145,7 @@ public class BossLife : MonoBehaviour
                                : savePointSpawnPosition;
             Instantiate(savePointPrefab, spawnPos, Quaternion.identity);
         }
-
+        AudioManager.Instance.StopMusicImmediately();
         yield return new WaitForSeconds(1.5f);
         Destroy(gameObject);
     }
