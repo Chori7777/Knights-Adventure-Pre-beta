@@ -8,7 +8,7 @@ public class Coin : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            ControladorDatosJuego.Instance.AgregarMonedas(1);
+            ControladorDatosJuego.Instance.AgregarMonedas(10);
         }
     }
 }

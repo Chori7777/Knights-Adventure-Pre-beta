@@ -106,21 +106,31 @@ public class EnemyLife : MonoBehaviour
         core.SetDead(true);
         core.SetTakingDamage(false);
 
+        DisableModules();
+
+        if (core.rb != null)
+        {
+            core.rb.linearVelocity = Vector2.zero;
+        }
+
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null) col.enabled = false;
+
+        // 🔥 DEBUG - Añade esto temporalmente
+        Debug.Log("Muriendo - Animator existe: " + (core.anim != null));
+        if (core.anim != null)
+        {
+            Debug.Log("Activando Death trigger/bool");
+            core.anim.SetTrigger("Death"); // O SetBool("Death", true)
+        }
+        // 🔥 FIN DEBUG
+
         if (core.animController != null)
         {
             AudioManager.Instance.PlaySFX(Dust, 0.4f, 1f);
             core.animController.SetDamage(false);
             core.animController.SetDeath(true);
         }
-
-        if (core.rb != null)
-        {
-            core.rb.linearVelocity = Vector2.zero;
-            core.rb.gravityScale = 0;
-        }
-
-        Collider2D col = GetComponent<Collider2D>();
-        if (col != null) col.enabled = false;
 
         StartCoroutine(DeathSequence());
     }

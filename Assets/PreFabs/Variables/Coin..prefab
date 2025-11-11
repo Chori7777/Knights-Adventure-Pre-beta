@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886d4f554218aae489b73fa02504ef2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PickUpEffect: {fileID: 8300000, guid: 38511197c4df2a7468811646ee776fff, type: 3}
 --- !u!114 &5302360072149690253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,7 +138,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7075129a6c30a6f4cb39c9396d21f4c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coin: {fileID: 8300000, guid: c4db55ee8012b154987db7999d5512f9, type: 3}
 --- !u!58 &4211143501239453150
 CircleCollider2D:
   m_ObjectHideFlags: 0

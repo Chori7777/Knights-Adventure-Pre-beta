@@ -5,8 +5,6 @@ public class EnemyCore : MonoBehaviour
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Animator anim;
     [HideInInspector] public SpriteRenderer spriteRenderer;
-
-
     [HideInInspector] public EnemyAnimationController animController;
     [HideInInspector] public EnemyMovement movement;
     [HideInInspector] public EnemyLife life;
@@ -23,28 +21,20 @@ public class EnemyCore : MonoBehaviour
     public Transform player;
 
     public bool FacingRight { get; private set; } = true;
-
     public Vector2 FacingDirection => FacingRight ? Vector2.right : Vector2.left;
 
-  
     private void Awake()
     {
         InitializeComponents();
         FindPlayer();
-
-        // Inicializar movimiento correctamente
-        if (movement != null)
-            movement.Initialize(this); 
     }
 
     private void InitializeComponents()
     {
-        // Componentes básicos
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // Módulos opcionales
         animController = GetComponent<EnemyAnimationController>();
         movement = GetComponent<EnemyMovement>();
         life = GetComponent<EnemyLife>();
@@ -52,13 +42,11 @@ public class EnemyCore : MonoBehaviour
         rangedAttack = GetComponent<EnemyRangedAttack>();
         flying = GetComponent<EnemyFlying>();
 
-        // Inicializa controlador de animaciones
         if (animController != null)
         {
             animController.Initialize(this);
         }
 
-        // Inicializa módulos
         if (movement != null) movement.Initialize(this);
         if (life != null) life.Initialize(this);
         if (meleeAttack != null) meleeAttack.Initialize(this);
@@ -78,7 +66,6 @@ public class EnemyCore : MonoBehaviour
         }
     }
 
-    //papurientacion del enemigo
     public void FaceDirection(Vector2 direction)
     {
         if (direction.x > 0 && !FacingRight)
@@ -106,7 +93,6 @@ public class EnemyCore : MonoBehaviour
         transform.localScale = scale;
     }
 
-   //estados del enemigo crack
     public void SetDead(bool value)
     {
         IsDead = value;
@@ -122,7 +108,6 @@ public class EnemyCore : MonoBehaviour
         IsAttacking = value;
     }
 
-    //distancia al jugador
     public float DistanceToPlayer()
     {
         if (player == null) return Mathf.Infinity;

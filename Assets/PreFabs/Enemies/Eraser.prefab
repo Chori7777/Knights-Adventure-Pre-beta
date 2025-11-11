@@ -85,7 +85,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 535337391
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -2810140291375201395, guid: b38f5a318050bc240aad57e68359d9ad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -162,7 +162,7 @@ MonoBehaviour:
   attackDamage: 1
   attackCooldown: 3
   attackDuration: 2.3
-  hitboxRadius: 2.6
+  hitboxRadius: 1.24
 --- !u!114 &14606473730038741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,6 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
+  Dust: {fileID: 8300000, guid: 42ae3beb092d45c4d9349c81570926a3, type: 3}
   knockbackForce: 2
   knockbackRecoveryTime: 0.7
   deathDelay: 1.5
@@ -284,7 +285,7 @@ MonoBehaviour:
     m_Bits: 2048
   chaseSpeed: 3
   detectionRange: 7
-  canChasePlayer: 1
+  canChasePlayer: 0
 --- !u!114 &2901514079859901754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,26 +298,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e82f20de677da0469e8c8e4b65b5fff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intelligenceLevel: 0
-  patrolSpeed: 2
-  groundCheck: {fileID: 8894675422672147290}
-  groundCheckDistance: 0.5
+  moveSpeed: 2
+  detectionRange: 5
+  jumpVelocity: 8
+  obstacleCheckDistance: 1.2
+  obstacleCheckBottom: 0.2
+  obstacleCheckTop: 1.2
+  minTimeBetweenJumps: 0.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 2048
-  chaseSpeed: 3
-  detectionRange: 5
-  canChasePlayer: 1
-  jumpForce: 10
-  jumpCooldown: 1
-  minJumpHeight: 1
-  obstacleDetectionDistance: 1.5
-  wallCheckHeight: 1
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
-  platformCheckDistance: 3
-  dropCheckDistance: 2
 --- !u!1 &2816108883560375769
 GameObject:
   m_ObjectHideFlags: 0
