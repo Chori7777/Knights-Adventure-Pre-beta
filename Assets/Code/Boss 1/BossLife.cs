@@ -25,6 +25,9 @@ public class BossLife : MonoBehaviour
     [SerializeField] private float knockbackRecoveryTime = 0.4f;
     private bool recibiendoDanio = false;
 
+    [Header("Script de ataque del jefe")]
+    [SerializeField] private MonoBehaviour scriptAtaque; // <- arrastrás acá el script del jefe
+
     private BossTrigger bossTrigger;
 
     private void Awake()
@@ -106,6 +109,13 @@ public class BossLife : MonoBehaviour
         isDead = true;
         recibiendoDanio = false;
 
+        // 🔥 Detiene el script de ataque que le asignaste
+        if (scriptAtaque != null)
+        {
+            scriptAtaque.StopAllCoroutines();
+            scriptAtaque.enabled = false;
+        }
+
         if (anim != null)
         {
             anim.SetBool("damage", false);
@@ -119,13 +129,12 @@ public class BossLife : MonoBehaviour
         if (col != null)
             col.enabled = false;
 
-        var attackScript = GetComponent<EnemyBasicAttack>();
-        if (attackScript != null)
-            attackScript.enabled = false;
-
         StartCoroutine(DeathSequence());
     }
-
+    public void StopDmg ()
+    {
+        anim.SetBool("damage", false);
+    }
     private IEnumerator DeathSequence()
     {
         if (bossTrigger != null)
@@ -133,8 +142,9 @@ public class BossLife : MonoBehaviour
 
         if (spawnSavePointOnDeath && savePointPrefab != null)
         {
-            Vector3 spawnPos = (savePointSpawnPosition == Vector3.zero) ?
-                               transform.position : savePointSpawnPosition;
+            Vector3 spawnPos = (savePointSpawnPosition == Vector3.zero)
+                               ? transform.position
+                               : savePointSpawnPosition;
             Instantiate(savePointPrefab, spawnPos, Quaternion.identity);
         }
 
@@ -142,17 +152,12 @@ public class BossLife : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void StopDmg()
-    {
-        if (anim != null)
-            anim.SetBool("damage", false);
-    }
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
-        Vector3 spawnPos = (savePointSpawnPosition == Vector3.zero) ?
-                          transform.position : savePointSpawnPosition;
+        Vector3 spawnPos = (savePointSpawnPosition == Vector3.zero)
+                          ? transform.position
+                          : savePointSpawnPosition;
         Gizmos.DrawWireSphere(spawnPos, 1f);
         Gizmos.DrawLine(spawnPos, spawnPos + Vector3.up * 2f);
     }

@@ -8,7 +8,7 @@ public class BossNameUI : MonoBehaviour
     [Header("Referencias")]
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private TextMeshProUGUI nombreTexto;
-    [SerializeField] private AudioClip bossIntroSound; // 🎵 Sonido tipo Undertale
+    [SerializeField] private AudioClip bossIntroSound; 
 
     [Header("Duración")]
     [SerializeField] private float fadeInTime = 0.8f;

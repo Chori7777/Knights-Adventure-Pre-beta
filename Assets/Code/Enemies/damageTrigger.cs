@@ -7,6 +7,10 @@ public class triggerDamage : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("Boss") || other.CompareTag("enemy"))
+        {
+            return; // Ignorar colisión con el jefe
+        }
         if (other.CompareTag("Player")) 
         {
             playerLife playerHealth = other.GetComponent<playerLife>();

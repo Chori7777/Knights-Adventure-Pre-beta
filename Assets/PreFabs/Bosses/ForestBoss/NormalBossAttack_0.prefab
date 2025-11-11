@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4379081363283820521}
   - component: {fileID: 4045057145371412063}
   - component: {fileID: 4533028979082779610}
+  - component: {fileID: 202368888788499127}
   m_Layer: 0
   m_Name: NormalBossAttack_0
   m_TagString: Untagged
@@ -162,3 +163,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &202368888788499127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4296133638176391950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97e089fc20279c42a2b6357c37b02cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1

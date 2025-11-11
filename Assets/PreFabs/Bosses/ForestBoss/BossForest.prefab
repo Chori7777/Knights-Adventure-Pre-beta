@@ -19,11 +19,11 @@ GameObject:
   - component: {fileID: 5799007874817773941}
   m_Layer: 0
   m_Name: BossForest
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9210925217902634886
 Transform:
   m_ObjectHideFlags: 0
@@ -128,60 +128,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fa29f69ce5eb2f4d9c0cced4014939b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftPosition: {fileID: 0}
-  rightPosition: {fileID: 0}
-  moveSpeed: 3
-  moveCooldown: 5
-  teleportDuration: 0.5
-  featherPrefab: {fileID: 4296133638176391950, guid: 837b2a712f152a841987361d2b16fb4a, type: 3}
-  featherSpeed: 8
-  fallingFeatherCount: 5
-  fallingFeatherInterval: 0.3
-  featherFallSpeed: 5
-  fallingFeatherSpawnArea: {fileID: 0}
-  fallingFeatherSpawnRangeX: 8
-  fallingFeatherSpawnHeight: 6
-  fallingFeatherSFX: {fileID: 0}
-  crossDistance: 3
-  crossWarningTime: 1
-  warningIndicatorPrefab: {fileID: 0}
-  crossPatternSFX: {fileID: 0}
-  warningBeepSFX: {fileID: 0}
-  meleeDetectionRange: 3
-  defenseFeatherCount: 3
-  defenseFeatherSpread: 20
-  defenseActivationRange: 2.5
-  defenseFeatherSFX: {fileID: 0}
-  waveFeatherCount: 8
-  waveInitialSpeed: 3
-  waveAcceleration: 1.5
-  waveVerticalSpacing: 1
-  waveStartY: -3
-  waveAttackSFX: {fileID: 0}
-  risingFeatherCount: 6
-  risingSpeed: 4
-  risingHomeSpeed: 2
-  risingHomeDistance: 4
-  risingSpawnY: -6
-  risingSpawnRangeX: 8
-  risingAttackSFX: {fileID: 0}
-  explosionSpawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  explosionFeatherCount: 6
-  explosionFeatherSpeedMin: 0.8
-  explosionFeatherSpeedMax: 1.2
-  explosionSFX: {fileID: 0}
-  player: {fileID: 0}
+  posicionIzquierda: {fileID: 0}
+  posicionDerecha: {fileID: 0}
+  velocidadMovimiento: 3
+  cooldownMovimiento: 6
+  duracionTeletransporte: 0.5
+  voltearHaciaJugador: 1
+  prefabPluma: {fileID: 4296133638176391950, guid: 837b2a712f152a841987361d2b16fb4a, type: 3}
+  velocidadPluma: 10
+  cantidadPlumasCayendo: 3
+  intervaloPlumasCayendo: 0.3
+  velocidadCaida: 8
+  puntoSpawnSuperior: {fileID: 0}
+  rangoSpawnX: 15
+  alturaSpawn: 6
+  sonidoPlumaCayendo: {fileID: 0}
+  distanciaCruz: 4
+  duracionSeguimiento: 2
+  tiempoAdvertencia: 1
+  prefabIndicadorAdvertencia: {fileID: 0}
+  sonidoPatronCruz: {fileID: 0}
+  sonidoBeepAdvertencia: {fileID: 0}
+  cantidadPlumasTeledirigidas: 3
+  intervaloPlumasTeledirigidas: 0.25
+  anguloDispersion: 1
+  velocidadTeledirigida: 9
+  fuerzaTeledirigida: 0.5
+  rangoActivacion: 0
+  sonidoPlumaTeledirigida: {fileID: 0}
+  cantidadPlumasOla: 8
+  cantidadHuecos: 4
+  velocidadInicialOla: 3
+  aceleracionOla: 4
+  espaciadoVertical: 1
+  offsetInicioY: -3
+  usarPosicionJefeParaOla: 0
+  sonidoAtaqueOla: {fileID: 0}
+  puntoSpawnInferior: {fileID: 0}
+  cantidadPlumasAscendentes: 6
+  velocidadAscenso: 7
+  velocidadBusqueda: 2
+  distanciaBusqueda: 2
+  rangoSpawnXInferior: 15
+  sonidoAtaqueAscendente: {fileID: 0}
+  puntoExplosion: {fileID: 0}
+  puntosExplosion: 3
+  rangoExplosionX: 15
+  rangoExplosionY: 2
+  cantidadPlumasPorExplosion: 8
+  velocidadExplosionMin: 0.8
+  velocidadExplosionMax: 1.2
+  sonidoExplosion: {fileID: 0}
+  jugador: {fileID: 0}
   animator: {fileID: 1197321308857651937}
-  bossLife: {fileID: 3354991593770247439}
-  moveSFX: {fileID: 0}
-  teleportSFX: {fileID: 0}
-  timeBetweenAttacks: 2.5
+  vidaJefe: {fileID: 3354991593770247439}
+  sonidoMovimiento: {fileID: 0}
+  sonidoTeletransporte: {fileID: 0}
+  sonidoMuerte: {fileID: 0}
+  tiempoEntreAtaques: 2.5
+  mostrarIntroduccion: 1
 --- !u!50 &934493352331397093
 Rigidbody2D:
   serializedVersion: 5
@@ -208,7 +213,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!61 &8303887297860392887
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -288,8 +293,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossID: Boss1
-  health: 10
-  maxHealth: 10
+  health: 1
+  maxHealth: 1
   savePointPrefab: {fileID: 0}
   savePointSpawnPosition: {x: 0, y: 0, z: 0}
   spawnSavePointOnDeath: 1
