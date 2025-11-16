@@ -42,6 +42,10 @@ public class EnemyLife : MonoBehaviour
         else
         {
             core.SetTakingDamage(true);
+
+            // ✅ NUEVO: Cancelar ataque si estaba atacando
+            CancelCurrentAttack();
+
             StartCoroutine(DamageRecovery());
         }
     }
@@ -67,6 +71,10 @@ public class EnemyLife : MonoBehaviour
         else
         {
             ApplyKnockback(attackPosition);
+
+            // ✅ NUEVO: Cancelar ataque si estaba atacando
+            CancelCurrentAttack();
+
             StartCoroutine(DamageRecovery());
         }
     }
@@ -99,6 +107,14 @@ public class EnemyLife : MonoBehaviour
         }
     }
 
+    private void CancelCurrentAttack()
+    {
+        if (core.meleeAttack != null)
+        {
+            core.meleeAttack.CancelAttack();
+        }
+    }
+
     private void Die()
     {
         if (core.IsDead) return;
@@ -106,28 +122,30 @@ public class EnemyLife : MonoBehaviour
         core.SetDead(true);
         core.SetTakingDamage(false);
 
-        DisableModules();
-
         if (core.rb != null)
         {
-            core.rb.linearVelocity = Vector2.zero;
+            core.rb.linearVelocity = Vector2.zero;     // Detener movimiento
+            core.rb.angularVelocity = 0f;              // Detener rotación
+            core.rb.bodyType = RigidbodyType2D.Static; 
+            // Alternativa: core.rb.simulated = false; (desactiva física completamente)
         }
 
+        // Desactivar collider
         Collider2D col = GetComponent<Collider2D>();
-        if (col != null) col.enabled = false;
+        if (col != null)
+            col.enabled = false;
 
-        // 🔥 DEBUG - Añade esto temporalmente
-        Debug.Log("Muriendo - Animator existe: " + (core.anim != null));
-        if (core.anim != null)
+        // Desactivar módulos
+        DisableModules();
+
+        // Animación de muerte
+        if (AudioManager.Instance != null && Dust != null)
         {
-            Debug.Log("Activando Death trigger/bool");
-            core.anim.SetTrigger("Death"); // O SetBool("Death", true)
+            AudioManager.Instance.PlaySFX(Dust, 0.4f, 1f);
         }
-        // 🔥 FIN DEBUG
 
         if (core.animController != null)
         {
-            AudioManager.Instance.PlaySFX(Dust, 0.4f, 1f);
             core.animController.SetDamage(false);
             core.animController.SetDeath(true);
         }
@@ -137,10 +155,7 @@ public class EnemyLife : MonoBehaviour
 
     private IEnumerator DeathSequence()
     {
-        DisableModules();
-
         yield return new WaitForSeconds(deathDelay);
-
         Destroy(gameObject);
     }
 
@@ -150,6 +165,9 @@ public class EnemyLife : MonoBehaviour
         if (core.meleeAttack != null) core.meleeAttack.enabled = false;
         if (core.rangedAttack != null) core.rangedAttack.enabled = false;
         if (core.flying != null) core.flying.enabled = false;
+
+        EnemySmartMovement smartMove = GetComponent<EnemySmartMovement>();
+        if (smartMove != null) smartMove.enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

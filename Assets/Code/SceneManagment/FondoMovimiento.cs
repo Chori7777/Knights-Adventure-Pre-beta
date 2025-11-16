@@ -3,6 +3,7 @@
 public class FondoMovimiento : MonoBehaviour
 {
     [SerializeField] private Vector2 velocidadMovimiento;
+    [SerializeField] private bool resetOnLoop = true;
 
     private Vector2 offset;
     private Material material;
@@ -12,7 +13,6 @@ public class FondoMovimiento : MonoBehaviour
     {
         material = GetComponent<SpriteRenderer>().material;
 
-        // Mejor manera de encontrar el jugador
         GameObject jugador = GameObject.FindGameObjectWithTag("Player");
         if (jugador != null)
         {
@@ -20,17 +20,37 @@ public class FondoMovimiento : MonoBehaviour
         }
         else
         {
-            Debug.LogError("No se encontró objeto con tag 'Player'");
+            Debug.LogWarning("[FondoMovimiento] No se encontró objeto con tag 'Player'");
         }
     }
 
     private void Update()
     {
-        // Verificación de seguridad antes de usar jugadorRB
-        if (jugadorRB != null)
+        if (jugadorRB == null) return;
+
+        offset = (jugadorRB.linearVelocity.x * 0.1f) * velocidadMovimiento * Time.deltaTime;
+        material.mainTextureOffset += offset;
+
+
+        if (resetOnLoop)
         {
-            offset = (jugadorRB.linearVelocity.x * 0.1f) * velocidadMovimiento * Time.deltaTime;
-            material.mainTextureOffset += offset;
+            Vector2 currentOffset = material.mainTextureOffset;
+
+            if (currentOffset.x > 1f || currentOffset.x < -1f)
+                currentOffset.x %= 1f;
+
+            if (currentOffset.y > 1f || currentOffset.y < -1f)
+                currentOffset.y %= 1f;
+
+            material.mainTextureOffset = currentOffset;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (material != null)
+        {
+            material.mainTextureOffset = Vector2.zero;
         }
     }
 }

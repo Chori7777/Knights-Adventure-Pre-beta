@@ -118,6 +118,18 @@ public class EnemyAnimationController : MonoBehaviour
             anim.SetTrigger("Attack");
         }
     }
+    public void ResetAttack()
+    {
+        if (hasAttackTrigger)
+        {
+            anim.ResetTrigger("Attack");
+        }
+
+        if (hasIsAttackingParam)
+        {
+            anim.SetBool("isAttacking", false);
+        }
+    }
 
     public void SetDamage(bool value)
     {

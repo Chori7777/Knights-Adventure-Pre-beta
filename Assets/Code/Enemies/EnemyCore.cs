@@ -107,6 +107,20 @@ public class EnemyCore : MonoBehaviour
     {
         IsAttacking = value;
     }
+    public void CancelAttack()
+    {
+        if (meleeAttack != null)
+        {
+            meleeAttack.CancelAttack();
+        }
+
+        if (rangedAttack != null)
+        {
+            rangedAttack.CancelAttack();
+        }
+
+        SetAttacking(false);
+    }
 
     public float DistanceToPlayer()
     {

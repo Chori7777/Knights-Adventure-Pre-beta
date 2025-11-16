@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
 public class EnemyMeleeAttack : MonoBehaviour
 {
     [Header("Detección")]
@@ -18,6 +17,9 @@ public class EnemyMeleeAttack : MonoBehaviour
 
     private EnemyCore core;
     private float lastAttackTime = -Mathf.Infinity;
+
+    private Coroutine attackCoroutine;
+
 
     public void Initialize(EnemyCore enemyCore)
     {
@@ -40,19 +42,16 @@ public class EnemyMeleeAttack : MonoBehaviour
     {
         if (!core.CanMove || core.IsAttacking) return;
 
-        // Detectar jugador en rango de ataque
         if (IsPlayerInRange() && CanAttack())
         {
-            StartCoroutine(AttackRoutine());
+            attackCoroutine = StartCoroutine(AttackRoutine());
         }
     }
-
 
     private bool IsPlayerInRange()
     {
         if (core.player == null) return false;
 
-        // Raycast en la dirección que mira el enemigo
         Vector2 direction = core.FacingDirection;
         RaycastHit2D hit = Physics2D.Raycast(attackPoint.position, direction, attackRange, playerLayer);
 
@@ -69,32 +68,29 @@ public class EnemyMeleeAttack : MonoBehaviour
         core.SetAttacking(true);
         lastAttackTime = Time.time;
 
-        // Detener movimiento
         if (core.rb != null)
         {
             core.rb.linearVelocity = Vector2.zero;
         }
 
-        // Trigger de animación
         if (core.animController != null)
         {
             core.animController.TriggerAttack();
         }
 
-        // Esperar un momento antes de hacer daño (sincronizado con animación)
         yield return new WaitForSeconds(attackDuration * 0.5f);
 
-        // Hacer daño (también se puede llamar desde Animation Event)
         DealDamage();
 
-        // Esperar resto de la animación
         yield return new WaitForSeconds(attackDuration * 0.5f);
 
         core.SetAttacking(false);
+        attackCoroutine = null;
     }
+
+
     public void DealDamage()
     {
-        // Detectar jugador en hitbox circular
         Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, hitboxRadius, playerLayer);
 
         foreach (Collider2D hit in hits)
@@ -112,17 +108,38 @@ public class EnemyMeleeAttack : MonoBehaviour
         }
     }
 
+    // 🔥🔥🔥 NUEVO: Cancelar ataque completamente
+    public void CancelAttack()
+    {
+        // Si había una animación en curso, cancelarla
+        if (attackCoroutine != null)
+        {
+            StopCoroutine(attackCoroutine);
+            attackCoroutine = null;
+        }
+
+        // Resetear flag global
+        core.SetAttacking(false);
+
+        // Reset de animación si existe
+        if (core.animController != null)
+        {
+            core.animController.ResetAttack();
+        }
+
+        // Detener hitbox
+        // (no hace falta porque DealDamage solo se ejecuta en el momento exacto)
+    }
+
 
     private void OnDrawGizmosSelected()
     {
         if (attackPoint == null) return;
 
-        // Rango de detección (raycast)
         Gizmos.color = Color.red;
         Vector2 direction = core != null ? core.FacingDirection : Vector2.right;
         Gizmos.DrawLine(attackPoint.position, attackPoint.position + (Vector3)direction * attackRange);
 
-        // Hitbox de daño
         Gizmos.color = new Color(1, 0, 0, 0.3f);
         Gizmos.DrawSphere(attackPoint.position, hitboxRadius);
     }

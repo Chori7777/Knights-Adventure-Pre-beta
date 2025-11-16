@@ -39,13 +39,11 @@ public class playerLife : MonoBehaviour
     [SerializeField] private string deathAnimationName = "Death";
     [SerializeField] private float deathFallbackDuration = 1f;
 
-    // Nuevo: indicador de que el player terminó su inicialización lógica
     private bool isInitialized = false;
     public bool IsInitialized => isInitialized;
 
     private void Awake()
     {
-        // Obtener componentes locales (esto no toca la UI)
         controller = GetComponent<PlayerMovement>();
         animController = GetComponent<PlayerAnimationController>();
         fallbackAnimator = GetComponent<Animator>();
@@ -53,14 +51,13 @@ public class playerLife : MonoBehaviour
         if (animController != null && controller != null)
             animController.Initialize(controller);
 
-        // Clamp de salud temprano
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
     }
 
     private IEnumerator Start()
     {
-        // Intentar vincular con el HUD durante unos frames (esperar a que la UI exista)
-        float timeout = 1.0f; // 1 segundo de paciencia
+        // Intentar vincular con el HUD durante unos frames
+        float timeout = 1.0f;
         float t = 0f;
         while (PlayerHealthUI.Instance == null && t < timeout)
         {
@@ -71,21 +68,15 @@ public class playerLife : MonoBehaviour
         if (PlayerHealthUI.Instance != null)
         {
             healthUI = PlayerHealthUI.Instance;
-            // Initialize es seguro (ver PlayerHealthUI modificado)
             healthUI.Initialize(this);
         }
         else
         {
-            Debug.LogWarning("[playerLife] No se encontró PlayerHealthUI en Start() (continuando sin HUD).");
+            Debug.LogWarning("[playerLife] No se encontró PlayerHealthUI (continuando sin HUD).");
         }
 
-        // Registrar para volver a vincular cuando se cargue escena (en caso de que HUD esté por escena)
         SceneManager.sceneLoaded += OnSceneLoaded;
-
-        // Marca que ya terminó la inicialización lógica
         isInitialized = true;
-
-        // Actualizar UI final
         UpdateUI();
     }
 
@@ -96,7 +87,6 @@ public class playerLife : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Re-vincular HUD si aparece en la nueva escena
         if (PlayerHealthUI.Instance != null)
         {
             healthUI = PlayerHealthUI.Instance;
@@ -139,6 +129,7 @@ public class playerLife : MonoBehaviour
         currentPotions = Mathf.Min(currentPotions + amount, maxPotions);
         UpdateUI();
     }
+
     public void TakeDamage(Vector2 attackerPosition, int damage)
     {
         if (!CanTakeDamage()) return;
@@ -148,13 +139,14 @@ public class playerLife : MonoBehaviour
         currentHealth = Mathf.Max(currentHealth, 0);
         UpdateUI();
 
+        // ✅ ARREGLADO: Verificar que controller existe
         if (controller != null)
         {
             controller.TakeDamage(attackerPosition);
         }
         else
         {
-            Debug.LogError("[playerLife] Error al llamar controller.TakeDamage(): PlayerMovement no encontrado o no inicializado");
+            Debug.LogError("[playerLife] PlayerMovement no encontrado");
         }
 
         if (animController != null)
@@ -233,32 +225,25 @@ public class playerLife : MonoBehaviour
     {
         if (!isDead) isDead = true;
         OnDeathComplete();
-        AudioManager.Instance.StopMusicImmediately();
     }
 
     private void OnDeathComplete()
     {
-        AudioManager.Instance.StopMusicImmediately();
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.StopMusicImmediately();
 
         if (ControladorDatosJuego.Instance != null)
         {
-            // Guardar datos antes de morir
             ControladorDatosJuego.Instance.datosjuego.escenaActual =
                 SceneManager.GetActiveScene().name;
-
             ControladorDatosJuego.Instance.GuardarDatos();
-
-            // Ir a pantalla de GameOver
-            SceneManager.LoadScene("GameOver"); // ⚠️ Asegurate de tener una escena llamada así
+            SceneManager.LoadScene("GameOver");
         }
         else
         {
-            // Si no hay controlador, recargar escena actual
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
-
-
 
     private void DisableAllControls()
     {
@@ -307,7 +292,6 @@ public class playerLife : MonoBehaviour
             healthUI.UpdateDisplay();
     }
 
-    // Métodos de setters
     public void SetHealth(int health)
     {
         currentHealth = Mathf.Clamp(health, 0, maxHealth);

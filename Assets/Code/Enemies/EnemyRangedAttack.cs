@@ -144,6 +144,23 @@ public class EnemyRangedAttack : MonoBehaviour
             Debug.Log("disparando proyectil");
         }
     }
+    public void CancelAttack()
+    {
+
+        StopAllCoroutines();
+        core.SetAttacking(false);
+
+
+        if (core.animController != null)
+        {
+            core.animController.ResetAttack();
+        }
+
+        if (core.rb != null)
+        {
+            core.rb.linearVelocity = Vector2.zero;
+        }
+    }
 
     private Vector2 RotateVector(Vector2 vector, float angle)
     {
