@@ -45,6 +45,11 @@ public class ControladorDatosJuego : MonoBehaviour
 
         EscribirArchivo();
         Debug.Log(" Datos guardados correctamente");
+        if (SaveNotification.Instance != null)
+        {
+            SaveNotification.Instance.ShowSaveSuccess();
+        }
+
     }
 
     private void CapturarDatosJugador()
@@ -99,6 +104,10 @@ public class ControladorDatosJuego : MonoBehaviour
         else
         {
             Debug.LogWarning(" No hay archivo de guardado existente");
+        }
+        if (SaveNotification.Instance != null)
+        {
+            SaveNotification.Instance.ShowLoadSuccess();
         }
     }
     public void ContinuarPartida()

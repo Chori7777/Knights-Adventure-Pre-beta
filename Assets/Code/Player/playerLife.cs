@@ -56,7 +56,6 @@ public class playerLife : MonoBehaviour
 
     private IEnumerator Start()
     {
-        // Intentar vincular con el HUD durante unos frames
         float timeout = 1.0f;
         float t = 0f;
         while (PlayerHealthUI.Instance == null && t < timeout)
@@ -68,11 +67,44 @@ public class playerLife : MonoBehaviour
         if (PlayerHealthUI.Instance != null)
         {
             healthUI = PlayerHealthUI.Instance;
-            healthUI.Initialize(this);
         }
         else
         {
-            Debug.LogWarning("[playerLife] No se encontró PlayerHealthUI (continuando sin HUD).");
+            Debug.LogWarning("No se encontró nada....");
+        }
+
+        // ✅ NUEVO: Cargar vida máxima desde datos guardados
+        if (ControladorDatosJuego.Instance != null)
+        {
+            var datos = ControladorDatosJuego.Instance.datosjuego;
+
+            // Restaurar vida máxima
+            if (datos.vidaMaxima > 0)
+            {
+                SetMaxHealth(datos.vidaMaxima);
+                Debug.Log($" Vida máxima cargada: {datos.vidaMaxima}");
+            }
+
+            // Restaurar vida actual
+            if (datos.vidaActual > 0)
+            {
+                SetHealth(datos.vidaActual);
+                Debug.Log($"Vida actual cargada: {datos.vidaActual}");
+            }
+
+            // Restaurar pociones
+            if (datos.maxPotions > 0)
+            {
+                SetMaxPotions(datos.maxPotions);
+                SetPotions(datos.cantidadpociones);
+                Debug.Log($"Pociones: {datos.cantidadpociones}/{datos.maxPotions}");
+            }
+        }
+
+        // Inicializar UI con los valores cargados
+        if (healthUI != null)
+        {
+            healthUI.Initialize(this);
         }
 
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -139,7 +171,6 @@ public class playerLife : MonoBehaviour
         currentHealth = Mathf.Max(currentHealth, 0);
         UpdateUI();
 
-        // ✅ ARREGLADO: Verificar que controller existe
         if (controller != null)
         {
             controller.TakeDamage(attackerPosition);

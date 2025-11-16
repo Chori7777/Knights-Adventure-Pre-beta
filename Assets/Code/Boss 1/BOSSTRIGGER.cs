@@ -21,9 +21,6 @@ public class BossTrigger : MonoBehaviour
     [SerializeField] private Animator cameraAnimator;
     [SerializeField] private string nombreJefe;
 
-    [Header("Audio - Música")]
-    [SerializeField] private float musicFadeInDuration = 1f;
-
     private bool enCooldown = false;
     private bool enPelea = false;
     private BossLife spawnedBoss;
