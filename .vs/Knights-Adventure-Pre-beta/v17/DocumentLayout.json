@@ -1,0 +1,120 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|c:\\users\\thiag\\onedrive\\documentos\\github\\knights-adventure-pre-beta\\assets\\code\\player\\playerhealthui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\code\\player\\playerhealthui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|c:\\users\\thiag\\onedrive\\documentos\\github\\knights-adventure-pre-beta\\assets\\playeraxesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\playeraxesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|c:\\users\\thiag\\onedrive\\documentos\\github\\knights-adventure-pre-beta\\assets\\code\\gamesavefile\\datosjuego.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\code\\gamesavefile\\datosjuego.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\assets\\code\\enemies\\meleeenemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\code\\enemies\\meleeenemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\assets\\code\\enemies\\enemyrangedattack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\code\\enemies\\enemyrangedattack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\assets\\code\\enemies\\enemyanimationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\code\\enemies\\enemyanimationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PlayerHealthUI.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Player\\PlayerHealthUI.cs",
+              "RelativeDocumentMoniker": "Assets\\Code\\Player\\PlayerHealthUI.cs",
+              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Player\\PlayerHealthUI.cs",
+              "RelativeToolTip": "Assets\\Code\\Player\\PlayerHealthUI.cs",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAcwJ4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T02:57:07.602Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DatosJuego.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\GameSaveFile\\DatosJuego.cs",
+              "RelativeDocumentMoniker": "Assets\\Code\\GameSaveFile\\DatosJuego.cs",
+              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\GameSaveFile\\DatosJuego.cs",
+              "RelativeToolTip": "Assets\\Code\\GameSaveFile\\DatosJuego.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAQwCsAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T02:52:34.217Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PlayerAxeSystem.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\PlayerAxeSystem.cs",
+              "RelativeDocumentMoniker": "Assets\\PlayerAxeSystem.cs",
+              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\PlayerAxeSystem.cs",
+              "RelativeToolTip": "Assets\\PlayerAxeSystem.cs",
+              "ViewState": "AgIAAJoAAAAAAAAAAAD4v6wAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T02:50:14.329Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EnemyRangedAttack.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Enemies\\EnemyRangedAttack.cs",
+              "RelativeDocumentMoniker": "Assets\\Code\\Enemies\\EnemyRangedAttack.cs",
+              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Enemies\\EnemyRangedAttack.cs",
+              "RelativeToolTip": "Assets\\Code\\Enemies\\EnemyRangedAttack.cs",
+              "ViewState": "AgIAAIYAAAAAAAAAAAAQwKIAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T02:38:02.227Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EnemyAnimationController.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Enemies\\EnemyAnimationController.cs",
+              "RelativeDocumentMoniker": "Assets\\Code\\Enemies\\EnemyAnimationController.cs",
+              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Enemies\\EnemyAnimationController.cs",
+              "RelativeToolTip": "Assets\\Code\\Enemies\\EnemyAnimationController.cs",
+              "ViewState": "AgIAAGgAAAAAAAAAAAA3wHkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T02:37:27.09Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MeleeEnemy.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Enemies\\MeleeEnemy.cs",
+              "RelativeDocumentMoniker": "Assets\\Code\\Enemies\\MeleeEnemy.cs",
+              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Enemies\\MeleeEnemy.cs",
+              "RelativeToolTip": "Assets\\Code\\Enemies\\MeleeEnemy.cs",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAuwGwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T02:33:45.13Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
