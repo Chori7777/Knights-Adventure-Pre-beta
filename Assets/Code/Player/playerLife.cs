@@ -20,7 +20,7 @@ public class playerLife : MonoBehaviour
     [SerializeField] private int currentPotions = 3;
     [SerializeField] private int potionHealAmount = 1;
     [SerializeField] private float potionCooldown = 0.5f;
-    [SerializeField] private CooldownIndicator potionCooldownIndicator; // ✅ NUEVO
+    [SerializeField] private CooldownIndicator potionCooldownIndicator;
     private float lastPotionTime = -10f;
     public int Potions => currentPotions;
     public int MaxPotions => maxPotions;
@@ -147,9 +147,15 @@ public class playerLife : MonoBehaviour
         currentPotions--;
         currentHealth = Mathf.Min(currentHealth + potionHealAmount, maxHealth);
         lastPotionTime = Time.time;
+
+  
+        if (potionCooldownIndicator != null)
+        {
+            potionCooldownIndicator.StartCooldown(potionCooldown);
+        }
+
         UpdateUI();
     }
-
     private bool CanUsePotion()
     {
         if (Time.time - lastPotionTime < potionCooldown) return false;
