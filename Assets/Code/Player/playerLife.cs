@@ -20,6 +20,7 @@ public class playerLife : MonoBehaviour
     [SerializeField] private int currentPotions = 3;
     [SerializeField] private int potionHealAmount = 1;
     [SerializeField] private float potionCooldown = 0.5f;
+    [SerializeField] private CooldownIndicator potionCooldownIndicator; // ✅ NUEVO
     private float lastPotionTime = -10f;
     public int Potions => currentPotions;
     public int MaxPotions => maxPotions;
@@ -56,6 +57,7 @@ public class playerLife : MonoBehaviour
 
     private IEnumerator Start()
     {
+        // Intentar vincular con el HUD durante unos frames
         float timeout = 1.0f;
         float t = 0f;
         while (PlayerHealthUI.Instance == null && t < timeout)
@@ -70,7 +72,7 @@ public class playerLife : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("No se encontró nada....");
+            Debug.LogWarning("[playerLife] No se encontró PlayerHealthUI (continuando sin HUD).");
         }
 
         // ✅ NUEVO: Cargar vida máxima desde datos guardados
@@ -82,14 +84,14 @@ public class playerLife : MonoBehaviour
             if (datos.vidaMaxima > 0)
             {
                 SetMaxHealth(datos.vidaMaxima);
-                Debug.Log($" Vida máxima cargada: {datos.vidaMaxima}");
+                Debug.Log($"💾 [playerLife] Vida máxima cargada: {datos.vidaMaxima}");
             }
 
             // Restaurar vida actual
             if (datos.vidaActual > 0)
             {
                 SetHealth(datos.vidaActual);
-                Debug.Log($"Vida actual cargada: {datos.vidaActual}");
+                Debug.Log($"💾 [playerLife] Vida actual cargada: {datos.vidaActual}");
             }
 
             // Restaurar pociones
@@ -97,7 +99,7 @@ public class playerLife : MonoBehaviour
             {
                 SetMaxPotions(datos.maxPotions);
                 SetPotions(datos.cantidadpociones);
-                Debug.Log($"Pociones: {datos.cantidadpociones}/{datos.maxPotions}");
+                Debug.Log($"💾 [playerLife] Pociones cargadas: {datos.cantidadpociones}/{datos.maxPotions}");
             }
         }
 
@@ -171,6 +173,7 @@ public class playerLife : MonoBehaviour
         currentHealth = Mathf.Max(currentHealth, 0);
         UpdateUI();
 
+        // ✅ ARREGLADO: Verificar que controller existe
         if (controller != null)
         {
             controller.TakeDamage(attackerPosition);
@@ -258,6 +261,7 @@ public class playerLife : MonoBehaviour
         OnDeathComplete();
     }
 
+    // ✅ ARREGLADO: Eliminada duplicación
     private void OnDeathComplete()
     {
         if (AudioManager.Instance != null)

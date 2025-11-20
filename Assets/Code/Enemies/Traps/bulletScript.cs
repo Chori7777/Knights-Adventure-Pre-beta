@@ -4,7 +4,7 @@ public class BulletScript : MonoBehaviour
 {
     public int damage = 1;
     public float lifetime = 3f;
-    public float speed = 10f; // Variable para traps y otros scripts
+    public float speed = 10f; 
 
     void Start()
     {

@@ -13,10 +13,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Puntos de Detección")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform wallCheck;
-    [SerializeField] private Transform projectileSpawnPoint;
 
-    [Header("Prefabs y Capas")]
-    [SerializeField] private GameObject projectilePrefab;
+    [Header("Capas")]
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
 
@@ -48,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     private float dashTimer;
     private float lastDashTime = -10f;
 
-    [Header("Interacción con Paredes - Estilo Celeste")]
+    [Header("Interacción con Paredes")]
     [SerializeField] private float wallSlideSpeed = 1.5f;
     [SerializeField] private float wallSlideAcceleration = 2f;
     [SerializeField] private float wallJumpForceX = 10f;
@@ -78,12 +76,6 @@ public class PlayerMovement : MonoBehaviour
     private bool attackStepActive;
     private float lastAttackTime = -10f;
 
-    [Header("Proyectiles")]
-    [SerializeField] private float projectileSpeed = 10f;
-    [SerializeField] private float projectileCooldown = 0.5f;
-
-    private float lastProjectileTime;
-
     [Header("Habilidades Desbloqueables")]
     public bool canMove = true;
     public bool canJump = true;
@@ -92,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
     public bool canDash = true;
     public bool canWallCling = true;
     public bool canBlock = true;
-    public bool canThrowProjectile = true;
+    public bool canThrowProjectile = true; 
 
     [Header("Detección")]
     [SerializeField] private float groundCheckRay = 0.2f;
@@ -112,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool isTakingDamage;
 
     [Header("Camera Holder")]
-    [SerializeField] private Transform cameraHolder; // Nuevo: objeto vacío que contiene la cámara
+    [SerializeField] private Transform cameraHolder;
     private Vector3 originalCameraPosition;
 
     private void Start()
@@ -252,7 +244,6 @@ public class PlayerMovement : MonoBehaviour
         if (canJump) HandleJump();
         if (canAttack) HandleAttack();
         if (canDash) HandleDash();
-        if (canThrowProjectile) HandleProjectile();
     }
 
     private void HandleMovement()
@@ -439,7 +430,11 @@ public class PlayerMovement : MonoBehaviour
         {
             currentCombo = isGrounded ? ((currentCombo == 1) ? 2 : 1) : 1;
             StartAttack(currentCombo);
-            AudioManager.Instance.PlaySFX(attackSound, 0.1f, 0.5f);
+
+            if (AudioManager.Instance != null && attackSound != null)
+            {
+                AudioManager.Instance.PlaySFX(attackSound, 0.1f, 0.5f);
+            }
         }
     }
 
@@ -492,7 +487,7 @@ public class PlayerMovement : MonoBehaviour
 
         StartCoroutine(DamageRecoveryCoroutine());
 
-        if (hurtSound != null)
+        if (hurtSound != null && AudioManager.Instance != null)
         {
             float randomPitch = Random.Range(0.9f, 1.1f);
             AudioManager.Instance.PlaySFX(hurtSound, 0.5f, randomPitch);
@@ -525,28 +520,7 @@ public class PlayerMovement : MonoBehaviour
         animController.StopDamage();
     }
 
-    private void HandleProjectile()
-    {
-        if (Input.GetKeyDown(KeyCode.C) && Time.time > lastProjectileTime + projectileCooldown)
-        {
-            if (projectilePrefab != null && projectileSpawnPoint != null)
-            {
-                lastProjectileTime = Time.time;
-                GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
-
-                Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
-                if (projectileRb != null)
-                {
-                    float direction = facingRight ? 1f : -1f;
-                    projectileRb.linearVelocity = new Vector2(direction * projectileSpeed, 0);
-                }
-
-                animController.TriggerThrow();
-            }
-        }
-    }
-
-    // Propiedades públicas
+//propiedades publicas
     public bool IsGrounded => isGrounded;
     public bool IsTouchingWall => isTouchingWall;
     public bool IsAttacking => isAttacking;
@@ -557,4 +531,5 @@ public class PlayerMovement : MonoBehaviour
     public bool IsBlocking => Input.GetKey(KeyCode.X);
     public bool IsWallSliding => isWallSliding;
     public bool IsSprinting => Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
+    public bool FacingRight => facingRight;
 }

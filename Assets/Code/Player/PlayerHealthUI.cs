@@ -69,8 +69,7 @@ public class PlayerHealthUI : MonoBehaviour
 
     private Vector2 targetHeadPosition;
     private Tweener headTween;   
-    // Para animación suave
-    private int lastKnownHealth = -1;
+
 
     void Awake()
     {

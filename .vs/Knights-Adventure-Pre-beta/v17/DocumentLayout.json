@@ -3,52 +3,56 @@
   "WorkspaceRootPath": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|c:\\users\\thiag\\onedrive\\documentos\\github\\knights-adventure-pre-beta\\assets\\savenotification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\savenotification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|c:\\users\\thiag\\onedrive\\documentos\\github\\knights-adventure-pre-beta\\assets\\abilityunlockpickup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\abilityunlockpickup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|c:\\users\\thiag\\onedrive\\documentos\\github\\knights-adventure-pre-beta\\assets\\code\\player\\playerhealthui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|c:\\users\\thiag\\onedrive\\documentos\\github\\knights-adventure-pre-beta\\assets\\unlocktutorialui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\unlocktutorialui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\assets\\code\\dialogue\\npc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\code\\dialogue\\npc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\assets\\code\\healthupgradepickup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\code\\healthupgradepickup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\assets\\code\\playershield.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\code\\playershield.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\assets\\code\\player\\playerhealthui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\code\\player\\playerhealthui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\assets\\code\\featherbosscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\code\\featherbosscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\assets\\cooldownindicator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\cooldownindicator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\assets\\code\\player\\playerlife.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\code\\player\\playerlife.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\assets\\code\\gamesavefile\\savepoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\code\\gamesavefile\\savepoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\assets\\code\\player\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\code\\player\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\assets\\code\\gamesavefile\\datosjuego.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\code\\gamesavefile\\datosjuego.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\assets\\code\\gamesavefile\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\code\\gamesavefile\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\assets\\healthupgradepickup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\healthupgradepickup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\assets\\code\\enemies\\traps\\bulletscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\code\\enemies\\traps\\bulletscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\assets\\code\\player\\healthsystemtester.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\code\\player\\healthsystemtester.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\assets\\playershield.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\playershield.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\assets\\playeraxesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\playeraxesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\assets\\code\\enemies\\meleeenemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\code\\enemies\\meleeenemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\assets\\code\\enemies\\enemyrangedattack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\code\\enemies\\enemyrangedattack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\assets\\code\\enemies\\enemyanimationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\code\\enemies\\enemyanimationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\assets\\axescript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98AE6C7B-1BD1-C8BC-632F-CA8D1B46ABDF}|Assembly-CSharp.csproj|solutionrelative:assets\\axescript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,153 +62,165 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SaveNotification.cs",
-              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\SaveNotification.cs",
-              "RelativeDocumentMoniker": "Assets\\SaveNotification.cs",
-              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\SaveNotification.cs",
-              "RelativeToolTip": "Assets\\SaveNotification.cs",
-              "ViewState": "AgIAAFIAAAAAAAAAAAAcwLEAAAABAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "UnlockTutorialUI.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\UnlockTutorialUI.cs",
+              "RelativeDocumentMoniker": "Assets\\UnlockTutorialUI.cs",
+              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\UnlockTutorialUI.cs",
+              "RelativeToolTip": "Assets\\UnlockTutorialUI.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAAPIAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-16T10:01:52.412Z",
+              "WhenOpened": "2025-11-18T21:11:44.655Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "savePoint.cs",
-              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\GameSaveFile\\savePoint.cs",
-              "RelativeDocumentMoniker": "Assets\\Code\\GameSaveFile\\savePoint.cs",
-              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\GameSaveFile\\savePoint.cs",
-              "RelativeToolTip": "Assets\\Code\\GameSaveFile\\savePoint.cs",
-              "ViewState": "AgIAAF8AAAAAAAAAAAAwwGwAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "AbilityUnlockPickup.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\AbilityUnlockPickup.cs",
+              "RelativeDocumentMoniker": "Assets\\AbilityUnlockPickup.cs",
+              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\AbilityUnlockPickup.cs",
+              "RelativeToolTip": "Assets\\AbilityUnlockPickup.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAowCkAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-16T09:30:35.578Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "HealthUpgradePickup.cs",
-              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\HealthUpgradePickup.cs",
-              "RelativeDocumentMoniker": "Assets\\HealthUpgradePickup.cs",
-              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\HealthUpgradePickup.cs",
-              "RelativeToolTip": "Assets\\HealthUpgradePickup.cs",
-              "ViewState": "AgIAAGUAAAAAAAAAAAAiwHYAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-16T09:06:35.736Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "PlayerShield.cs",
-              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\PlayerShield.cs",
-              "RelativeDocumentMoniker": "Assets\\PlayerShield.cs",
-              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\PlayerShield.cs",
-              "RelativeToolTip": "Assets\\PlayerShield.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKsAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-16T09:02:32.616Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "HealthSystemTester.cs",
-              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Player\\HealthSystemTester.cs",
-              "RelativeDocumentMoniker": "Assets\\Code\\Player\\HealthSystemTester.cs",
-              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Player\\HealthSystemTester.cs",
-              "RelativeToolTip": "Assets\\Code\\Player\\HealthSystemTester.cs",
-              "ViewState": "AgIAAOUAAAAAAAAAAADwvzkBAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-16T08:11:18.083Z"
+              "WhenOpened": "2025-11-18T21:10:00.84Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "NPC.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Dialogue\\NPC.cs",
+              "RelativeDocumentMoniker": "Assets\\Code\\Dialogue\\NPC.cs",
+              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Dialogue\\NPC.cs",
+              "RelativeToolTip": "Assets\\Code\\Dialogue\\NPC.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-18T08:07:13.946Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CooldownIndicator.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\CooldownIndicator.cs",
+              "RelativeDocumentMoniker": "Assets\\CooldownIndicator.cs",
+              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\CooldownIndicator.cs",
+              "RelativeToolTip": "Assets\\CooldownIndicator.cs",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAmwLEAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-18T07:12:48.509Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "playerLife.cs",
               "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Player\\playerLife.cs",
               "RelativeDocumentMoniker": "Assets\\Code\\Player\\playerLife.cs",
               "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Player\\playerLife.cs",
               "RelativeToolTip": "Assets\\Code\\Player\\playerLife.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAMwBYAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-16T07:40:59.828Z"
+              "WhenOpened": "2025-11-18T07:11:57.039Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
+              "Title": "PlayerShield.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\PlayerShield.cs",
+              "RelativeDocumentMoniker": "Assets\\Code\\PlayerShield.cs",
+              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\PlayerShield.cs",
+              "RelativeToolTip": "Assets\\Code\\PlayerShield.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-18T07:02:32.587Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FeatherBossController.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\FeatherBossController.cs",
+              "RelativeDocumentMoniker": "Assets\\Code\\FeatherBossController.cs",
+              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\FeatherBossController.cs",
+              "RelativeToolTip": "Assets\\Code\\FeatherBossController.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAIwBwAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-18T07:02:27.151Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "PlayerHealthUI.cs",
               "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Player\\PlayerHealthUI.cs",
               "RelativeDocumentMoniker": "Assets\\Code\\Player\\PlayerHealthUI.cs",
               "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Player\\PlayerHealthUI.cs",
               "RelativeToolTip": "Assets\\Code\\Player\\PlayerHealthUI.cs",
-              "ViewState": "AgIAAI8AAAAAAAAAAAAwwFkAAAATAAAAAAAAAA==",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAIwH8AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-16T02:57:07.602Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DatosJuego.cs",
-              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\GameSaveFile\\DatosJuego.cs",
-              "RelativeDocumentMoniker": "Assets\\Code\\GameSaveFile\\DatosJuego.cs",
-              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\GameSaveFile\\DatosJuego.cs",
-              "RelativeToolTip": "Assets\\Code\\GameSaveFile\\DatosJuego.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwDEAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-16T02:52:34.217Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "PlayerAxeSystem.cs",
-              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\PlayerAxeSystem.cs",
-              "RelativeDocumentMoniker": "Assets\\PlayerAxeSystem.cs",
-              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\PlayerAxeSystem.cs",
-              "RelativeToolTip": "Assets\\PlayerAxeSystem.cs",
-              "ViewState": "AgIAAKkAAAAAAAAAAAAgwN4AAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-16T02:50:14.329Z"
+              "WhenOpened": "2025-11-18T07:02:05.416Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "EnemyRangedAttack.cs",
-              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Enemies\\EnemyRangedAttack.cs",
-              "RelativeDocumentMoniker": "Assets\\Code\\Enemies\\EnemyRangedAttack.cs",
-              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Enemies\\EnemyRangedAttack.cs",
-              "RelativeToolTip": "Assets\\Code\\Enemies\\EnemyRangedAttack.cs",
-              "ViewState": "AgIAAIYAAAAAAAAAAAAQwKIAAAAFAAAAAAAAAA==",
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\GameSaveFile\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Code\\GameSaveFile\\GameManager.cs",
+              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\GameSaveFile\\GameManager.cs",
+              "RelativeToolTip": "Assets\\Code\\GameSaveFile\\GameManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-16T02:38:02.227Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "EnemyAnimationController.cs",
-              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Enemies\\EnemyAnimationController.cs",
-              "RelativeDocumentMoniker": "Assets\\Code\\Enemies\\EnemyAnimationController.cs",
-              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Enemies\\EnemyAnimationController.cs",
-              "RelativeToolTip": "Assets\\Code\\Enemies\\EnemyAnimationController.cs",
-              "ViewState": "AgIAAGgAAAAAAAAAAAA3wHkAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-16T02:37:27.09Z"
+              "WhenOpened": "2025-11-18T03:29:46.569Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "MeleeEnemy.cs",
-              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Enemies\\MeleeEnemy.cs",
-              "RelativeDocumentMoniker": "Assets\\Code\\Enemies\\MeleeEnemy.cs",
-              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Enemies\\MeleeEnemy.cs",
-              "RelativeToolTip": "Assets\\Code\\Enemies\\MeleeEnemy.cs",
-              "ViewState": "AgIAAFEAAAAAAAAAAAAuwGwAAAAAAAAAAAAAAA==",
+              "Title": "PlayerMovement.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Player\\PlayerMovement.cs",
+              "RelativeDocumentMoniker": "Assets\\Code\\Player\\PlayerMovement.cs",
+              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Player\\PlayerMovement.cs",
+              "RelativeToolTip": "Assets\\Code\\Player\\PlayerMovement.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAQwBAAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-16T02:33:45.13Z"
+              "WhenOpened": "2025-11-17T22:59:25.766Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HealthUpgradePickup.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\HealthUpgradePickup.cs",
+              "RelativeDocumentMoniker": "Assets\\Code\\HealthUpgradePickup.cs",
+              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\HealthUpgradePickup.cs",
+              "RelativeToolTip": "Assets\\Code\\HealthUpgradePickup.cs",
+              "ViewState": "AgIAAFwAAAAAAAAAAAAIwHsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T22:56:57.805Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AxeScript.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\AxeScript.cs",
+              "RelativeDocumentMoniker": "Assets\\AxeScript.cs",
+              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\AxeScript.cs",
+              "RelativeToolTip": "Assets\\AxeScript.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T22:55:07.996Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "bulletScript.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Enemies\\Traps\\bulletScript.cs",
+              "RelativeDocumentMoniker": "Assets\\Code\\Enemies\\Traps\\bulletScript.cs",
+              "ToolTip": "C:\\Users\\thiag\\OneDrive\\Documentos\\GitHub\\Knights-Adventure-Pre-beta\\Assets\\Code\\Enemies\\Traps\\bulletScript.cs",
+              "RelativeToolTip": "Assets\\Code\\Enemies\\Traps\\bulletScript.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAgwCYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T22:51:23.232Z"
             }
           ]
         }

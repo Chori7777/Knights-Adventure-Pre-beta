@@ -149,6 +149,7 @@ MonoBehaviour:
   currentPotions: 3
   potionHealAmount: 1
   potionCooldown: 0.5
+  potionCooldownIndicator: {fileID: 0}
   invincibilityDuration: 1
   usePotionKey: 114
   deathAnimationName: Death
@@ -169,8 +170,6 @@ MonoBehaviour:
   hurtSound: {fileID: 8300000, guid: 63a9c89bd995f3d41a29e414a0d95aa9, type: 3}
   groundCheck: {fileID: 8912768487357915013}
   wallCheck: {fileID: 3176949573638936446}
-  projectileSpawnPoint: {fileID: 5589603784711402807}
-  projectilePrefab: {fileID: 1814113125877117740, guid: 7bba41d5cf7a23a4692019778111ad4e, type: 3}
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -203,8 +202,6 @@ MonoBehaviour:
   attackCooldown: 0.1
   knockbackForce: 3
   damageRecoveryTime: 0.5
-  projectileSpeed: 10
-  projectileCooldown: 0.5
   canMove: 1
   canJump: 1
   canDoubleJump: 1
@@ -261,8 +258,12 @@ MonoBehaviour:
   knight1HealthSprite: {fileID: 1222221480408444849, guid: 54bfecb9a47a16b428cd0c0c9525dae2, type: 3}
   knightMoveDistancePerHealth: 0
   headOffsetX: 0
-  headOffsetY: 35
+  headOffsetY: 15
   segmentSpacing: 100
+  smoothHeadMovement: 1
+  headMoveSpeed: 5
+  damageParticles: {fileID: 0}
+  particleSpawnPoint: {fileID: 0}
 --- !u!50 &5419059314384228200
 Rigidbody2D:
   serializedVersion: 5
@@ -346,7 +347,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0007997453, y: -0.0010720491}
+  m_Offset: {x: -0.0007997453, y: 0.020129502}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -356,7 +357,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.86371464, y: 1.0688109}
+  m_Size: {x: 0.86371464, y: 1.0264078}
   m_EdgeRadius: 0
 --- !u!114 &3935386594159636164
 MonoBehaviour:
@@ -382,10 +383,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec2e113122053b49806afee167af90e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axePrefab: {fileID: 0}
-  throwPoint: {fileID: 0}
+  axePrefab: {fileID: 1814113125877117740, guid: 7bba41d5cf7a23a4692019778111ad4e, type: 3}
+  throwPoint: {fileID: 5589603784711402807}
   throwSpeed: 10
-  throwCooldown: 0.5
+  throwCooldown: 15
   currentAxes: 3
   maxAxes: 3
   throwSound: {fileID: 0}
@@ -411,7 +412,7 @@ MonoBehaviour:
   blockEffectPrefab: {fileID: 0}
   blockEffectDuration: 0.3
   blockKnockback: 2
-  canParry: 1
+  canParry: 0
 --- !u!1 &6035785815265924650
 GameObject:
   m_ObjectHideFlags: 0

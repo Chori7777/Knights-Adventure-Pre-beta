@@ -2405,6 +2405,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FadeImage
       objectReference: {fileID: 0}
+    - target: {fileID: 5169905743764243352, guid: be0e40038e263df4f9db0bde954bab73, type: 3}
+      propertyPath: m_Alpha
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5607285859387687102, guid: be0e40038e263df4f9db0bde954bab73, type: 3}
       propertyPath: m_ReferenceResolution.x
       value: 1920
@@ -2412,6 +2416,10 @@ PrefabInstance:
     - target: {fileID: 5607285859387687102, guid: be0e40038e263df4f9db0bde954bab73, type: 3}
       propertyPath: m_ReferenceResolution.y
       value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 8795525895520497129, guid: be0e40038e263df4f9db0bde954bab73, type: 3}
+      propertyPath: duracionFadeOut
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
