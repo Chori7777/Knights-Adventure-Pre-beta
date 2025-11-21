@@ -339,13 +339,23 @@ public class playerLife : MonoBehaviour
         UpdateUI();
     }
 
+    // En playerLife.cs, reemplaza la función SetMaxHealth con esto:
+
     public void SetMaxHealth(int max)
     {
         maxHealth = max;
         currentHealth = Mathf.Min(currentHealth, maxHealth);
+
+        // ✅ IMPORTANTE: Forzar actualización de los segmentos de la espada
+        if (healthUI != null)
+        {
+            healthUI.ForceRefresh();  // Esto reajusta los segmentos
+        }
+
         UpdateUI();
     }
 
+   
     public void SetPotions(int potions)
     {
         currentPotions = Mathf.Clamp(potions, 0, maxPotions);
