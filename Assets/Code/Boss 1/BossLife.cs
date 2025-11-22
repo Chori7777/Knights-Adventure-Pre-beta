@@ -26,8 +26,11 @@ public class BossLife : MonoBehaviour
     private bool recibiendoDanio = false;
 
     [Header("Script de ataque del jefe")]
-    [SerializeField] private MonoBehaviour scriptAtaque; 
+    [SerializeField] private MonoBehaviour scriptAtaque;
     private BossTrigger bossTrigger;
+
+    [Header("SCORE - NUEVO")]
+    [SerializeField] private int scoreReward = 50; 
 
     private void Awake()
     {
@@ -127,12 +130,27 @@ public class BossLife : MonoBehaviour
         if (col != null)
             col.enabled = false;
 
+ 
+        GiveScore();
+
         StartCoroutine(DeathSequence());
     }
-    public void StopDmg ()
+
+
+    private void GiveScore()
+    {
+        if (ControladorDatosJuego.Instance != null)
+        {
+            ControladorDatosJuego.Instance.AgregarMonedas(scoreReward);
+            Debug.Log($"👑 ¡JEFE ELIMINADO! Score +{scoreReward}");
+        }
+    }
+
+    public void StopDmg()
     {
         anim.SetBool("damage", false);
     }
+
     private IEnumerator DeathSequence()
     {
         if (bossTrigger != null)

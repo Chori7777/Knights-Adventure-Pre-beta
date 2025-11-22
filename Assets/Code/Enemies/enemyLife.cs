@@ -15,6 +15,9 @@ public class EnemyLife : MonoBehaviour
     [Header("Muerte")]
     [SerializeField] private float deathDelay = 1.5f;
 
+    [Header("SCORE - NUEVO")]
+    [SerializeField] private int scoreReward = 10; 
+
     private EnemyCore core;
 
     public void Initialize(EnemyCore enemyCore)
@@ -42,10 +45,7 @@ public class EnemyLife : MonoBehaviour
         else
         {
             core.SetTakingDamage(true);
-
-            // ✅ NUEVO: Cancelar ataque si estaba atacando
             CancelCurrentAttack();
-
             StartCoroutine(DamageRecovery());
         }
     }
@@ -71,10 +71,7 @@ public class EnemyLife : MonoBehaviour
         else
         {
             ApplyKnockback(attackPosition);
-
-            // ✅ NUEVO: Cancelar ataque si estaba atacando
             CancelCurrentAttack();
-
             StartCoroutine(DamageRecovery());
         }
     }
@@ -124,21 +121,17 @@ public class EnemyLife : MonoBehaviour
 
         if (core.rb != null)
         {
-            core.rb.linearVelocity = Vector2.zero;     // Detener movimiento
-            core.rb.angularVelocity = 0f;              // Detener rotación
-            core.rb.bodyType = RigidbodyType2D.Static; 
-            // Alternativa: core.rb.simulated = false; (desactiva física completamente)
+            core.rb.linearVelocity = Vector2.zero;
+            core.rb.angularVelocity = 0f;
+            core.rb.bodyType = RigidbodyType2D.Static;
         }
 
-        // Desactivar collider
         Collider2D col = GetComponent<Collider2D>();
         if (col != null)
             col.enabled = false;
 
-        // Desactivar módulos
         DisableModules();
 
-        // Animación de muerte
         if (AudioManager.Instance != null && Dust != null)
         {
             AudioManager.Instance.PlaySFX(Dust, 0.4f, 1f);
@@ -150,7 +143,18 @@ public class EnemyLife : MonoBehaviour
             core.animController.SetDeath(true);
         }
 
+        GiveScore();
+
         StartCoroutine(DeathSequence());
+    }
+
+    private void GiveScore()
+    {
+        if (ControladorDatosJuego.Instance != null)
+        {
+            ControladorDatosJuego.Instance.AgregarMonedas(scoreReward);
+
+        }
     }
 
     private IEnumerator DeathSequence()

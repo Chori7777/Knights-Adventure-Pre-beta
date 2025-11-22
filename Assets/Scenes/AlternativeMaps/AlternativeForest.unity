@@ -165,6 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886d4f554218aae489b73fa02504ef2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PickUpEffect: {fileID: 0}
 --- !u!483693784 &14820908
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -404,6 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidadMovimiento: {x: 0.2, y: 0}
+  resetOnLoop: 1
 --- !u!212 &40821583
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -895,6 +897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886d4f554218aae489b73fa02504ef2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PickUpEffect: {fileID: 0}
 --- !u!66 &252401011
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -1174,6 +1177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidadMovimiento: {x: 0.2, y: 0}
+  resetOnLoop: 1
 --- !u!212 &264083288
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2316,6 +2320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidadMovimiento: {x: 0.1, y: 0}
+  resetOnLoop: 1
 --- !u!212 &422446297
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3345,6 +3350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidadMovimiento: {x: 0.4, y: 0}
+  resetOnLoop: 1
 --- !u!212 &648523667
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3961,6 +3967,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidadMovimiento: {x: 0.3, y: 0}
+  resetOnLoop: 1
 --- !u!212 &765003332
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4222,6 +4229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidadMovimiento: {x: 0.2, y: 0}
+  resetOnLoop: 1
 --- !u!212 &954380157
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -63479,6 +63487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidadMovimiento: {x: 0.4, y: 0}
+  resetOnLoop: 1
 --- !u!212 &1082137253
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -64714,6 +64723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidadMovimiento: {x: 0.1, y: 0}
+  resetOnLoop: 1
 --- !u!212 &1338349467
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -64983,6 +64993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidadMovimiento: {x: 0.1, y: 0}
+  resetOnLoop: 1
 --- !u!212 &1460505163
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -65511,6 +65522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidadMovimiento: {x: 0.3, y: 0}
+  resetOnLoop: 1
 --- !u!212 &1652465526
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -65891,6 +65903,7 @@ MonoBehaviour:
   - {fileID: 1781085637}
   startingCheckpoint: 0
   cameraSize: 8
+  zoomSpeed: 2
 --- !u!1 &1803690168
 GameObject:
   m_ObjectHideFlags: 0
@@ -66137,52 +66150,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackSound: {fileID: 0}
   hurtSound: {fileID: 0}
-  groundCheck: {fileID: 1220686158}
-  wallCheck: {fileID: 1220686158}
-  projectileSpawnPoint: {fileID: 0}
-  projectilePrefab: {fileID: 0}
+  groundCheck: {fileID: 0}
+  wallCheck: {fileID: 0}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
   wallLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
   moveSpeed: 5
   blockMoveSpeed: 2
   sprintMultiplier: 1.5
-  isSprintMode: 0
-  jumpForce: 9
-  doubleJumpForce: 0
+  isSprintMode: 1
+  jumpForce: 12
+  doubleJumpForce: 10
   fallMultiplier: 3
   lowJumpMultiplier: 2.5
   coyoteTime: 0.15
   dashSpeed: 20
   dashDuration: 0.15
   dashCooldown: 0.5
-  wallSlideSpeed: 0
+  wallSlideSpeed: 1.5
   wallSlideAcceleration: 2
-  wallJumpForceX: 0
-  wallJumpForceY: 0
-  wallGravity: 0
+  wallJumpForceX: 10
+  wallJumpForceY: 16
+  wallGravity: 0.3
   wallJumpCooldown: 0.2
-  attackStepSpeed: 0
-  attackStepDelay: 0
-  attackStepDuration: 0
-  attackGroundDuration: 0
-  attackAirDuration: 0
-  attackCooldown: 0
-  knockbackForce: 0
-  damageRecoveryTime: 0
-  projectileSpeed: 0
-  projectileCooldown: 0
+  attackStepSpeed: 5
+  attackStepDelay: 0.15
+  attackStepDuration: 0.1
+  attackGroundDuration: 0.4
+  attackAirDuration: 0.4
+  attackCooldown: 0.1
+  knockbackForce: 10
+  damageRecoveryTime: 0.5
   canMove: 1
   canJump: 1
-  canDoubleJump: 0
-  canAttack: 0
+  canDoubleJump: 1
+  canAttack: 1
   canDash: 1
-  canWallCling: 0
+  canWallCling: 1
   canBlock: 1
-  canThrowProjectile: 0
+  canThrowProjectile: 1
   groundCheckRay: 0.2
   groundCheckSpacing: 0.3
   wallCheckDistance: 0.5
@@ -66210,6 +66219,7 @@ MonoBehaviour:
   currentPotions: 3
   potionHealAmount: 1
   potionCooldown: 0.5
+  potionCooldownIndicator: {fileID: 0}
   invincibilityDuration: 1
   usePotionKey: 114
   deathAnimationName: Death
@@ -66228,9 +66238,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   potionText: {fileID: 0}
   coinText: {fileID: 0}
+  axeText: {fileID: 0}
+  swordHandlePrefab: {fileID: 0}
+  swordMiddlePrefab: {fileID: 0}
+  swordTipPrefab: {fileID: 0}
   swordHandle: {fileID: 0}
-  swordMiddleParts: []
+  swordMiddle0: {fileID: 0}
+  swordMiddle1: {fileID: 0}
+  swordMiddle2: {fileID: 0}
   swordTip: {fileID: 0}
+  swordContainer: {fileID: 0}
   handleFullSprite: {fileID: 0}
   middleFullSprite: {fileID: 0}
   tipFullSprite: {fileID: 0}
@@ -66247,6 +66264,11 @@ MonoBehaviour:
   knightMoveDistancePerHealth: 50
   headOffsetX: 60
   headOffsetY: 0
+  segmentSpacing: 50
+  smoothHeadMovement: 1
+  headMoveSpeed: 5
+  damageParticles: {fileID: 0}
+  particleSpawnPoint: {fileID: 0}
 --- !u!114 &1894112869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66751,6 +66773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidadMovimiento: {x: 0.3, y: 0}
+  resetOnLoop: 1
 --- !u!212 &2075576846
 SpriteRenderer:
   m_ObjectHideFlags: 0

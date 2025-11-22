@@ -12,14 +12,15 @@ public class EnemyMeleeAttack : MonoBehaviour
     [SerializeField] private int attackDamage = 1;
     [SerializeField] private float attackCooldown = 1.5f;
     [SerializeField] private float attackDuration = 0.5f;
-
     [SerializeField] private float hitboxRadius = 1f;
+
+    [Header("Daño - NUEVO")]
+    [SerializeField] private float damageImmunityDuration = 0.5f; 
+    private float lastDamageDealtTime = -Mathf.Infinity; 
 
     private EnemyCore core;
     private float lastAttackTime = -Mathf.Infinity;
-
     private Coroutine attackCoroutine;
-
 
     public void Initialize(EnemyCore enemyCore)
     {
@@ -88,9 +89,15 @@ public class EnemyMeleeAttack : MonoBehaviour
         attackCoroutine = null;
     }
 
-
     public void DealDamage()
     {
+
+        if (Time.time < lastDamageDealtTime + damageImmunityDuration)
+        {
+            Debug.Log($" Daño en cooldown. Espera {damageImmunityDuration}s");
+            return;
+        }
+
         Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, hitboxRadius, playerLayer);
 
         foreach (Collider2D hit in hits)
@@ -102,35 +109,35 @@ public class EnemyMeleeAttack : MonoBehaviour
                 {
                     Vector2 attackPosition = new Vector2(transform.position.x, 0);
                     playerLife.TakeDamage(attackPosition, attackDamage);
-                    Debug.Log("golpeó al jugador");
+
+                    lastDamageDealtTime = Time.time;
+
+                    Debug.Log("⚔️ Golpeó al jugador");
                 }
             }
         }
     }
 
-    // 🔥🔥🔥 NUEVO: Cancelar ataque completamente
     public void CancelAttack()
     {
-        // Si había una animación en curso, cancelarla
         if (attackCoroutine != null)
         {
             StopCoroutine(attackCoroutine);
             attackCoroutine = null;
         }
 
-        // Resetear flag global
         core.SetAttacking(false);
 
-        // Reset de animación si existe
         if (core.animController != null)
         {
             core.animController.ResetAttack();
         }
 
-        // Detener hitbox
-        // (no hace falta porque DealDamage solo se ejecuta en el momento exacto)
+        if (core.rb != null)
+        {
+            core.rb.linearVelocity = Vector2.zero;
+        }
     }
-
 
     private void OnDrawGizmosSelected()
     {
